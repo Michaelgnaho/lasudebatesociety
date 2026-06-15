@@ -1,5 +1,7 @@
 import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -18,7 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${fraunces.variable} ${jakarta.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Navbar />
+
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

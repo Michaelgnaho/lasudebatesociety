@@ -48,7 +48,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-navy-deep text-sky-faint">
+    <div className="relative bg-navy-deep text-sky-faint">
       <div className="gradient-divider" />
 
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
@@ -174,6 +174,6 @@ export default function Footer() {
           </p>
         </div>
       </div>
-    </footer>
+    </div>
   );
 }
