@@ -5,14 +5,22 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { HiArrowRight, HiBars3, HiXMark } from "react-icons/hi2";
 import { RiMicFill } from "react-icons/ri";
+import {
+  RiInformationLine,
+  RiHeadphoneLine,
+  RiSwordLine,
+  RiTrophyLine,
+  RiGalleryLine,
+  RiMailLine,
+} from "react-icons/ri";
 
 const navLinks = [
-  { href: "/about", label: "About" },
-  { href: "/listen", label: "LISTEN" },
-  { href: "/word-war", label: "Word War" },
-  { href: "/leadership", label: "Leadership" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
+  { href: "/about", label: "About", Icon: RiInformationLine },
+  { href: "/listen", label: "LISTEN", Icon: RiHeadphoneLine },
+  { href: "/word-war", label: "Word War", Icon: RiSwordLine },
+  { href: "/achievements", label: "Achievements", Icon: RiTrophyLine },
+  { href: "/gallery", label: "Gallery", Icon: RiGalleryLine },
+  { href: "/contact", label: "Contact", Icon: RiMailLine },
 ];
 
 export default function Navbar() {
@@ -40,9 +48,8 @@ export default function Navbar() {
         <nav className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-6 lg:px-10">
           {/* ── LOGO ── */}
           <Link href="/" className="group flex items-center gap-3 no-underline">
-            {/* Icon circle */}
             <div
-              className="flex h-10 w-10 items-center justify-center rounded-full flex-shrink-0 transition-transform group-hover:scale-105"
+              className="flex h-10 w-10 items-center justify-center rounded-full flex-shrink-0"
               style={{
                 background: "var(--grad-icon)",
                 boxShadow: "0 4px 14px rgba(26,50,99,0.25)",
@@ -50,8 +57,6 @@ export default function Navbar() {
             >
               <RiMicFill className="text-white" size={16} />
             </div>
-
-            {/* Wordmark */}
             <div className="leading-tight">
               <span
                 className="block text-lg font-bold tracking-tight"
@@ -77,27 +82,35 @@ export default function Navbar() {
           </Link>
 
           {/* ── DESKTOP LINKS ── */}
-          <div className="hidden lg:flex items-center gap-7">
-            {navLinks.map((link) => {
-              const active = pathname === link.href;
+          <div className="hidden lg:flex items-center gap-1">
+            {navLinks.map(({ href, label, Icon }) => {
+              const active = pathname === href;
               return (
                 <Link
-                  key={link.href}
-                  href={link.href}
-                  className="relative no-underline"
+                  key={href}
+                  href={href}
+                  className="group relative no-underline flex items-center gap-1.5 px-3.5 py-2 rounded-lg"
                   style={{
                     fontFamily: "var(--font-body)",
                     fontSize: "0.82rem",
                     fontWeight: 600,
                     letterSpacing: "0.03em",
-                    color: active ? "var(--crimson)" : "rgba(14,30,61,0.65)",
-                    transition: "color 0.2s",
+                    color: active ? "var(--crimson)" : "rgba(14,30,61,0.60)",
+                    background: active ? "var(--sky-faint)" : "transparent",
                   }}
                 >
-                  {link.label}
+                  <Icon
+                    size={14}
+                    style={{
+                      color: active ? "var(--crimson)" : "var(--sky-mid)",
+                      flexShrink: 0,
+                    }}
+                  />
+                  {label}
+                  {/* Active underline pill */}
                   {active && (
                     <span
-                      className="absolute -bottom-[22px] left-0 right-0 h-[2px] rounded-full"
+                      className="absolute bottom-0 left-3.5 right-3.5 h-[2px] rounded-full"
                       style={{ background: "var(--grad-divider)" }}
                     />
                   )}
@@ -108,7 +121,6 @@ export default function Navbar() {
 
           {/* ── RIGHT: CTA + HAMBURGER ── */}
           <div className="flex items-center gap-3">
-            {/* Join Us — desktop */}
             <Link
               href="/join-us"
               className="hidden sm:inline-flex items-center gap-2 no-underline rounded-full text-white text-sm font-semibold"
@@ -118,22 +130,12 @@ export default function Navbar() {
                 padding: "0.55rem 1.3rem",
                 letterSpacing: "0.04em",
                 boxShadow: "0 4px 16px rgba(200,16,46,0.28)",
-                transition: "background 0.2s, box-shadow 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background =
-                  "var(--crimson-deep)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background =
-                  "var(--crimson)";
               }}
             >
               Join Us
               <HiArrowRight size={14} />
             </Link>
 
-            {/* Hamburger — mobile */}
             <button
               onClick={() => setOpen((o) => !o)}
               className="lg:hidden flex h-10 w-10 items-center justify-center rounded-full border"
@@ -163,27 +165,48 @@ export default function Navbar() {
           }}
         >
           <div className="flex flex-col gap-1">
-            {navLinks.map((link) => {
-              const active = pathname === link.href;
+            {navLinks.map(({ href, label, Icon }) => {
+              const active = pathname === href;
               return (
                 <Link
-                  key={link.href}
-                  href={link.href}
+                  key={href}
+                  href={href}
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-4 py-3 no-underline text-sm font-semibold"
+                  className="flex items-center gap-3 rounded-xl px-4 py-3 no-underline"
                   style={{
                     fontFamily: "var(--font-body)",
+                    fontSize: "0.875rem",
+                    fontWeight: 600,
                     color: active ? "var(--crimson)" : "rgba(14,30,61,0.75)",
                     background: active ? "var(--sky-faint)" : "transparent",
                     letterSpacing: "0.02em",
                   }}
                 >
-                  {link.label}
+                  {/* Icon pill */}
+                  <span
+                    className="flex h-8 w-8 items-center justify-center rounded-lg flex-shrink-0"
+                    style={{
+                      background: active
+                        ? "var(--crimson)"
+                        : "var(--sky-faint)",
+                    }}
+                  >
+                    <Icon
+                      size={15}
+                      style={{ color: active ? "#fff" : "var(--sky-mid)" }}
+                    />
+                  </span>
+                  {label}
+                  {active && (
+                    <span
+                      className="ml-auto h-1.5 w-1.5 rounded-full flex-shrink-0"
+                      style={{ background: "var(--crimson)" }}
+                    />
+                  )}
                 </Link>
               );
             })}
 
-            {/* Mobile Join Us */}
             <Link
               href="/join-us"
               onClick={() => setOpen(false)}

@@ -1,0 +1,127 @@
+@import "tailwindcss";
+@import "swiper/css";
+@import "swiper/css/effect-fade";
+@import "swiper/css/pagination";
+
+:root {
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+
+  /* Core palette */
+  --sky: #6fa8dc;
+  --sky-mid: #4a8fc7;
+  --sky-pale: #e8f4fd;
+  --sky-faint: #f3f9fe;
+  --crimson: #c8102e;
+  --crimson-deep: #8f0a1f;
+  --navy: #1a3263;
+  --navy-deep: #0e1e3d;
+
+  /* Surfaces */
+  --paper: #fafafa;
+  --ink: #1c1c1c;
+  --line: rgba(26, 50, 99, 0.12);
+
+  /* Gradients */
+  --grad-text: linear-gradient(100deg, #4a8fc7 0%, #c8102e 100%);
+  --grad-hero-bg: linear-gradient(
+    135deg,
+    #f3f9fe 0%,
+    #ffffff 50%,
+    #fef6f7 100%
+  );
+  --grad-divider: linear-gradient(90deg, #4a8fc7, #c8102e, transparent);
+  --grad-icon: linear-gradient(135deg, #4a8fc7, #1a3263);
+  --grad-stat-num: linear-gradient(135deg, #4a8fc7, #1a3263);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+}
+
+/* Gradient text utility — use on h1 spans or pull quotes */
+.gradient-text {
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient divider — between sections */
+.gradient-divider {
+  height: 1px;
+  background: var(--grad-divider);
+}
+
+/* Container rhythm */
+.section-shell {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-shell {
+    padding-inline: 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section-shell {
+    padding-inline: 4rem;
+  }
+}
+
+/* Transcript rail — signature structural device.
+   The page reads as a transcript of LSUDS's voice; each section
+   carries a cue number, like a line in a speech script. */
+.transcript-rule {
+  background-image: linear-gradient(
+    to bottom,
+    var(--line) 0,
+    var(--line) 6px,
+    transparent 6px,
+    transparent 14px
+  );
+  background-size: 1px 14px;
+  background-repeat: repeat-y;
+}
+
+/* Oversized quotation glyph used as a section ornament */
+.quote-glyph {
+  font-family: var(--font-heading);
+  line-height: 0.7;
+  color: var(--sky-pale);
+  -webkit-text-stroke: 1px var(--sky);
+}
+
+/* Static "hover" affordance without transition/animation */
+.no-anim {
+  transition: none !important;
+  animation: none !important;
+}
+
+:focus-visible {
+  outline: 2px solid var(--crimson);
+  outline-offset: 2px;
+}
