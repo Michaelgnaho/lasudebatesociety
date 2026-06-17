@@ -14,14 +14,16 @@ import {
   RiArticleLine,
   RiUserAddLine,
   RiPhoneLine,
+  RiHomeLine,
 } from "react-icons/ri";
 import { RiRssLine } from "react-icons/ri";
 import { RiMicFill } from "react-icons/ri";
 
 const exploreLinks = [
+  { href: "/", label: "Home", Icon: RiHomeLine },
   { href: "/about", label: "About Us", Icon: RiInformationLine },
   { href: "/listen", label: "LISTEN", Icon: RiHeadphoneLine },
-  { href: "/word-war", label: "Word War", Icon: RiSwordLine },
+  { href: "/programs", label: "Programs", Icon: RiSwordLine },
   { href: "/achievevments", label: "Achievments", Icon: RiTeamLine },
   { href: "/gallery", label: "Gallery", Icon: RiGalleryLine },
 ];

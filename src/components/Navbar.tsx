@@ -12,12 +12,14 @@ import {
   RiTrophyLine,
   RiGalleryLine,
   RiMailLine,
+  RiHomeLine,
 } from "react-icons/ri";
 
 const navLinks = [
+  { href: "/", label: "Home", Icon: RiHomeLine },
   { href: "/about", label: "About", Icon: RiInformationLine },
   { href: "/listen", label: "LISTEN", Icon: RiHeadphoneLine },
-  { href: "/word-war", label: "Word War", Icon: RiSwordLine },
+  { href: "/programs", label: "Programs", Icon: RiSwordLine },
   { href: "/achievements", label: "Achievements", Icon: RiTrophyLine },
   { href: "/gallery", label: "Gallery", Icon: RiGalleryLine },
   { href: "/contact", label: "Contact", Icon: RiMailLine },
