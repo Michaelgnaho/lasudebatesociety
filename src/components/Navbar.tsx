@@ -21,7 +21,6 @@ const navLinks = [
   { href: "/listen", label: "LISTEN", Icon: RiHeadphoneLine },
   { href: "/programs", label: "Programs", Icon: RiSwordLine },
   { href: "/achievements", label: "Achievements", Icon: RiTrophyLine },
-  { href: "/gallery", label: "Gallery", Icon: RiGalleryLine },
   { href: "/contact", label: "Contact", Icon: RiMailLine },
 ];
 
