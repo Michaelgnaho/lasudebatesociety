@@ -97,7 +97,7 @@ export default function Programs() {
           </h2>
           <p className="text-[var(--ink)]/55 max-w-sm">
             From flagship events to street debates, every LSUDS programme is
-            built around one belief — that the right words, spoken well, can
+            built around one belief: that the right words, spoken well, can
             change everything.
           </p>
         </div>
@@ -180,21 +180,21 @@ export default function Programs() {
 
             <div className="relative z-10 flex flex-col h-full">
               <div className="flex items-start justify-between">
-                <span className="flex h-12 w-12 items-center justify-center text-white bg-[var(--crimson)]">
+                <span className="flex h-12 w-12 items-center justify-center text-white bg-(--crimson)">
                   <Swords className="h-5 w-5" />
                 </span>
-                <span className="text-[10px] font-semibold uppercase tracking-widest text-[var(--ink)]/30 border border-[var(--line)] px-3 py-1.5">
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-(--ink)/30 border border-[var(--line)] px-3 py-1.5">
                   {programs[1].tag}
                 </span>
               </div>
 
-              <p className="mt-6 font-mono text-[11px] tracking-[0.28em] uppercase text-[var(--sky-mid)]">
+              <p className="mt-6 font-mono text-[11px] tracking-[0.28em] uppercase text-(--sky-mid)">
                 {programs[1].eyebrow}
               </p>
-              <h3 className="mt-2 text-4xl sm:text-5xl font-semibold text-[var(--navy)] tracking-tight">
+              <h3 className="mt-2 text-4xl sm:text-5xl font-semibold text-(--navy) tracking-tight">
                 {programs[1].name}
               </h3>
-              <p className="mt-4 text-[var(--ink)]/65 leading-relaxed max-w-md">
+              <p className="mt-4 text-(--ink)/65 leading-relaxed max-w-md">
                 {programs[1].description}
               </p>
 
@@ -202,9 +202,9 @@ export default function Programs() {
                 {programs[1].highlights.map((h) => (
                   <li
                     key={h}
-                    className="flex items-start gap-2.5 text-sm text-[var(--ink)]/50"
+                    className="flex items-start gap-2.5 text-sm text-(--ink)/50"
                   >
-                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[var(--crimson)] shrink-0" />
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-(--crimson) shrink-0" />
                     {h}
                   </li>
                 ))}
@@ -212,7 +212,7 @@ export default function Programs() {
 
               <a
                 href={programs[1].cta.href}
-                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[var(--navy)] border-b-2 pb-1 w-fit group"
+                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-(--navy) border-b-2 pb-1 w-fit group"
                 style={{ borderColor: "var(--crimson)" }}
               >
                 {programs[1].cta.label}
@@ -223,9 +223,9 @@ export default function Programs() {
         </div>
 
         {/* ── Bottom row: Change of Guard + Call-Out ───────────────────── */}
-        <div className="grid grid-cols-1 gap-px lg:grid-cols-2 bg-[var(--line)]">
+        <div className="grid grid-cols-1 gap-px lg:grid-cols-2 bg-(--line)">
           {/* Change of Guard */}
-          <div className="relative flex flex-col overflow-hidden p-8 sm:p-10 min-h-[400px] bg-white border-t border-[var(--line)]">
+          <div className="relative flex flex-col overflow-hidden p-8 sm:p-10 min-h-100 bg-white border-t border-[var(--line)]">
             <div className="flex items-start justify-between">
               <span
                 className="flex h-12 w-12 items-center justify-center text-white"

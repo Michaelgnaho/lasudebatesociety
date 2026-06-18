@@ -1,14 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import { FaMicrophoneAlt, FaArrowRight, FaPlay } from "react-icons/fa";
 import { HiChevronDown } from "react-icons/hi";
-
-// Swiper CSS must be imported in your globals or layout
-// import "swiper/css";
-// import "swiper/css/effect-fade";
-// import "swiper/css/pagination";
+import Link from "next/link";
 
 const slides = [
   {
@@ -18,7 +15,7 @@ const slides = [
     tag: "Latest Edition",
     bg: "linear-gradient(135deg, #0e1e3d 0%, #1a3263 50%, #0e1e3d 100%)",
     accent: "#6fa8dc",
-    img: null,
+    img: "/images/Eleso-Moyosoreoluwa.webp",
   },
   {
     id: 2,
@@ -27,7 +24,7 @@ const slides = [
     tag: "Previous Edition",
     bg: "linear-gradient(135deg, #1a0a0f 0%, #8f0a1f 45%, #1a3263 100%)",
     accent: "#c8102e",
-    img: null,
+    img: "/images/Hezekiah-Tiamiyu.webp",
   },
   {
     id: 3,
@@ -36,7 +33,7 @@ const slides = [
     tag: "Word War Finals",
     bg: "linear-gradient(135deg, #050d1a 0%, #0e1e3d 40%, #14294d 100%)",
     accent: "#4a8fc7",
-    img: null,
+    img: "/images/Oluwafemi-Akanmu.webp",
   },
   {
     id: 4,
@@ -45,7 +42,7 @@ const slides = [
     tag: "The Proving Ground",
     bg: "linear-gradient(135deg, #14090c 0%, #3d1020 50%, #1a3263 100%)",
     accent: "#c8102e",
-    img: null,
+    img: "/images/Boluwatife-Kolawole.webp",
   },
   {
     id: 5,
@@ -54,7 +51,52 @@ const slides = [
     tag: "Past Edition",
     bg: "linear-gradient(135deg, #060e20 0%, #1a3263 55%, #4a8fc7 100%)",
     accent: "#6fa8dc",
-    img: null,
+    img: "/images/Titilope-Ibrahim.webp",
+  },
+  {
+    id: 6,
+    edition: "LISTEN VI — EMERGENCE",
+    date: "10 July 2025",
+    tag: "Past Edition",
+    bg: "linear-gradient(135deg, #060e20 0%, #1a3263 55%, #4a8fc7 100%)",
+    accent: "#6fa8dc",
+    img: "/images/Oladunni-Akinsanmi .webp",
+  },
+  {
+    id: 7,
+    edition: "LISTEN VI — EMERGENCE",
+    date: "10 July 2025",
+    tag: "Past Edition",
+    bg: "linear-gradient(135deg, #060e20 0%, #1a3263 55%, #4a8fc7 100%)",
+    accent: "#6fa8dc",
+    img: "/images/Seide-Agosu.webp",
+  },
+  {
+    id: 8,
+    edition: "LISTEN VI — EMERGENCE",
+    date: "10 July 2025",
+    tag: "Past Edition",
+    bg: "linear-gradient(135deg, #060e20 0%, #1a3263 55%, #4a8fc7 100%)",
+    accent: "#6fa8dc",
+    img: "/images/Aina-Ayomide.webp",
+  },
+  {
+    id: 9,
+    edition: "LISTEN VI — EMERGENCE",
+    date: "10 July 2025",
+    tag: "Past Edition",
+    bg: "linear-gradient(135deg, #060e20 0%, #1a3263 55%, #4a8fc7 100%)",
+    accent: "#6fa8dc",
+    img: "/images/miracle.webp",
+  },
+  {
+    id: 10,
+    edition: "LISTEN VI — EMERGENCE",
+    date: "10 July 2025",
+    tag: "Past Edition",
+    bg: "linear-gradient(135deg, #060e20 0%, #1a3263 55%, #4a8fc7 100%)",
+    accent: "#6fa8dc",
+    img: "/images/Sherifat-Umar.webp",
   },
 ];
 
@@ -84,9 +126,21 @@ export default function Hero() {
                 className="relative h-full w-full"
                 style={{ background: slide.bg }}
               >
+                {/* Full-bleed photo */}
+                {slide.img && (
+                  <Image
+                    src={slide.img}
+                    alt={slide.edition}
+                    fill
+                    className="object-cover object-top"
+                    sizes="100vw"
+                    priority={slide.id === 1}
+                  />
+                )}
+
                 {/* Grain texture overlay */}
                 <div
-                  className="absolute inset-0 opacity-[0.035]"
+                  className="absolute inset-0 z-10 opacity-[0.035]"
                   style={{
                     backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
                     backgroundSize: "128px 128px",
@@ -94,7 +148,7 @@ export default function Hero() {
                 />
 
                 {/* Slide content badge — bottom-right */}
-                <div className="absolute bottom-10 right-8 sm:right-12 flex flex-col items-end gap-1">
+                <div className="absolute bottom-10 right-8 sm:right-12 z-10 flex flex-col items-end gap-1">
                   <span
                     className="font-mono text-[10px] sm:text-[11px] tracking-[0.3em] uppercase"
                     style={{ color: slide.accent }}
@@ -111,7 +165,7 @@ export default function Hero() {
 
                 {/* Side accent bar */}
                 <div
-                  className="absolute left-0 top-0 h-full w-1"
+                  className="absolute left-0 top-0 z-10 h-full w-1"
                   style={{
                     background: `linear-gradient(to bottom, transparent, ${slide.accent}, transparent)`,
                   }}
@@ -127,14 +181,14 @@ export default function Hero() {
           className="absolute inset-0 z-10"
           style={{
             background:
-              "linear-gradient(to right, rgba(5,13,26,0.75) 0%, rgba(5,13,26,0.35) 60%, transparent 100%)",
+              "linear-gradient(to right, rgba(5,13,26,0.85) 0%, rgba(5,13,26,0.5) 60%, rgba(5,13,26,0.2) 100%)",
           }}
         />
         <div
           className="absolute inset-0 z-10"
           style={{
             background:
-              "linear-gradient(to top, rgba(5,13,26,0.85) 0%, transparent 45%)",
+              "linear-gradient(to top, rgba(5,13,26,0.95) 0%, transparent 45%)",
           }}
         />
       </div>
@@ -193,7 +247,7 @@ export default function Hero() {
             </span>
           </h1>
 
-          {/* Subheading — "Valour in Speech" as italic gradient pull-quote */}
+          {/* Subheading */}
           <div className="mt-5 sm:mt-6 flex items-baseline gap-3">
             <span
               className="h-px w-8 shrink-0"
@@ -209,7 +263,7 @@ export default function Hero() {
                 backgroundClip: "text",
               }}
             >
-              "Valour in Speech"
+              &ldquo;Valour in Speech&rdquo;
             </p>
           </div>
 
@@ -222,8 +276,8 @@ export default function Hero() {
 
           {/* CTAs */}
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a
-              href="#join"
+            <Link
+              href="/contact"
               className="group inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-sm font-semibold text-white"
               style={{
                 background: "var(--crimson)",
@@ -232,25 +286,23 @@ export default function Hero() {
             >
               Join LSUDS
               <FaArrowRight className="h-3.5 w-3.5" />
-            </a>
+            </Link>
 
-            <a
-              href="#listen"
+            <Link
+              href="/listen"
               className="inline-flex items-center gap-2.5 rounded-full border border-white/25 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm"
               style={{ background: "rgba(255,255,255,0.07)" }}
             >
               <FaPlay className="h-3 w-3" />
               Explore LISTEN
-            </a>
+            </Link>
           </div>
         </div>
 
         {/* ─── BOTTOM STRIP ─────────────────────────────── */}
         <div className="section-shell flex items-end justify-between pb-9 sm:pb-11 gap-6">
-          {/* Pagination bullets */}
           <div className="hero-pagination flex items-center gap-2" />
 
-          {/* LISTEN edition count */}
           <div className="hidden sm:flex items-center gap-5">
             <div className="text-right">
               <div
@@ -289,7 +341,6 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Scroll cue */}
           <div className="flex flex-col items-center gap-2">
             <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-white/35">
               Scroll
@@ -299,7 +350,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ─── BULLET STYLES (inline) ───────────────────────── */}
+      {/* ─── BULLET STYLES ───────────────────────────────── */}
       <style>{`
         .hero-bullet {
           display: inline-block;

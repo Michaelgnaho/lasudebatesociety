@@ -17,12 +17,13 @@ import {
 interface Executive {
   name: string;
   role: string;
-  image: string; // path relative to /public, e.g. "/team/admin-1/hezekiah-tiamiyu.jpg"
+  image: string;
 }
 
 interface Administration {
   term: string;
   president: string;
+  presidentImage: string;
   note: string;
   executives: Executive[];
   isCurrent?: boolean;
@@ -108,396 +109,406 @@ const administrations: Administration[] = [
   {
     term: "1st Administration · 2018",
     president: "Moyosoreoluwa Eleso",
+    presidentImage: "/images/Eleso-Moyosoreoluwa.webp",
     note: "Founder and first President. One of fourteen who laid the foundation of LSUDS, setting the tone for excellence that every administration has built upon.",
     executives: [
       {
         name: "Hezekiah Tiamiyu",
         role: "Vice President",
-        image: "/team/admin-1/hezekiah-tiamiyu.jpg",
+        image: "/images/Hezekiah-Tiamiyu.webp",
       },
       {
         name: "Faith Uzuegbu",
         role: "General Secretary",
-        image: "/team/admin-1/faith-uzuegbu.jpg",
+        image: "/images/Faith Uzuegbu.webp",
       },
       {
         name: "Ademola Ibrahim",
         role: "PR Expert",
-        image: "/team/admin-1/ademola-ibrahim.jpg",
+        image: "/images/Ademola-Ibrahim.webp",
       },
       {
         name: "Timi Ojo",
         role: "Ex-Officio",
-        image: "/team/admin-1/timi-ojo.jpg",
+        image: "/images/Timi-Ojo.webp",
       },
     ],
   },
   {
     term: "2nd Administration · 2019",
     president: "Hezekiah Tiamiyu",
+    presidentImage: "/images/Hezekiah-Tiamiyu.webp",
     note: "Presided over the inaugural Word War and the first edition of LISTEN (SEED) — the event that would grow into Africa's biggest storytelling platform.",
     executives: [
       {
         name: "Zainab Amusa",
         role: "Vice President",
-        image: "/team/admin-2/zainab-amusa.jpg",
+        image: "/images/Zainab-Amusa.webp",
       },
       {
         name: "Tolulope Omogunle",
         role: "General Secretary",
-        image: "/team/admin-2/tolulope-omogunle.jpg",
+        image: "/images/Tolulope-Omogunle.webp",
       },
       {
         name: "Temilade Olanrewaju",
         role: "Asst. Gen. Secretary",
-        image: "/team/admin-2/temilade-olanrewaju.jpg",
+        image: "/images/Temilade-Olanrewaju.webp",
       },
       {
         name: "Oluwafemi Akanmu",
         role: "PR Expert",
-        image: "/team/admin-2/oluwafemi-akanmu.jpg",
+        image: "/images/Oluwafemi-Akanmu.webp",
       },
       {
         name: "Olawonuade Atofojomo",
         role: "Welfare Director",
-        image: "/team/admin-2/olawonuade-atofojomo.jpg",
+        image: "/images/Olawonuade-Atofojomo.webp",
       },
       {
         name: "Janet Ayangbola",
         role: "Financial Secretary",
-        image: "/team/admin-2/janet-ayangbola.jpg",
+        image: "/images/Janet-Ayangbola.webp",
       },
       {
         name: "Moyosoreoluwa Eleso",
         role: "Ex-Officio",
-        image: "/team/admin-2/moyosoreoluwa-eleso.jpg",
+        image: "/images/Eleso Moyosoreoluwa.webp",
       },
     ],
   },
   {
     term: "3rd Administration · 2020–2021",
     president: "Oluwafemi Akanmu",
+    presidentImage: "/images/Oluwafemi-Akanmu.webp",
     note: "A prolific writer and public speaker who elevated LSUDS to new heights, presiding over LISTEN II (VISION) and Word War II.",
     executives: [
       {
         name: "Zainab Amusa",
         role: "Vice President",
-        image: "/team/admin-3/zainab-amusa.jpg",
+        image: "/images/Zainab-Amusa.webp",
       },
       {
         name: "Shukroh Adeyemi",
         role: "General Secretary",
-        image: "/team/admin-3/shukroh-adeyemi.jpg",
+        image: "/images/Shukroh-Adeyemi.webp",
       },
       {
         name: "Fatima Abu",
         role: "Asst. Gen. Secretary",
-        image: "/team/admin-3/fatima-abu.jpg",
+        image: "/images/Fatima-Abu.webp",
       },
       {
         name: "Folayemi Sanusi",
         role: "PR Expert",
-        image: "/team/admin-3/folayemi-sanusi.jpg",
+        image: "/images/Folayemi-Sanusi.webp",
       },
       {
         name: "Oladunni Akinsanmi",
         role: "Financial Secretary",
-        image: "/team/admin-3/oladunni-akinsanmi.jpg",
+        image: "/images/Oladunni-Akinsanmi .webp",
       },
       {
-        name: "Hezekiah Tiamyu",
+        name: "Hezekiah Tiamiyu",
         role: "Ex-Officio",
-        image: "/team/admin-3/hezekiah-tiamyu.jpg",
+        image: "/images/Hezekiah-Tiamiyu.webp",
       },
     ],
   },
   {
     term: "4th Administration · 2021–2022",
     president: "Oladunni Akinsanmi",
+    presidentImage: "/images/Oladunni-Akinsanmi .webp",
     note: "Continued the outstanding legacy of her predecessors, training many speakers and presiding over LISTEN III (VOYAGE) and Word War III.",
     executives: [
       {
         name: "Victory Ashaka",
         role: "Vice President",
-        image: "/team/admin-4/victory-ashaka.jpg",
+        image: "/images/Victory-Ashaka.webp",
       },
       {
         name: "Titilope Ibrahim",
         role: "General Secretary",
-        image: "/team/admin-4/titilope-ibrahim.jpg",
+        image: "/images/Titilope-Ibrahim.webp",
       },
       {
         name: "Akintunde Oluwatosin",
         role: "Asst. Gen. Secretary",
-        image: "/team/admin-4/akintunde-oluwatosin.jpg",
+        image: "/images/Akintunde-Oluwatosin.webp",
       },
       {
         name: "Boluwatife Kolawole",
         role: "PR Expert",
-        image: "/team/admin-4/boluwatife-kolawole.jpg",
+        image: "/images/Boluwatife-Kolawole.webp",
       },
       {
         name: "Afonja Omotolani",
         role: "Welfare Director",
-        image: "/team/admin-4/afonja-omotolani.jpg",
+        image: "/images/Afonja-Omotolani.webp",
       },
       {
         name: "Oluwatade Peace",
         role: "Financial Secretary",
-        image: "/team/admin-4/oluwatade-peace.jpg",
+        image: "/images/Oluwatade-Peace.webp",
       },
       {
         name: "Zainab Amusa",
         role: "Ex-Officio",
-        image: "/team/admin-4/zainab-amusa.jpg",
+        image: "/images/Zainab-Amusa.webp",
       },
     ],
   },
   {
     term: "5th Administration · 2022–2023",
     president: "Titilope Ibrahim",
+    presidentImage: "/images/Titilope-Ibrahim.webp",
     note: "Popularly known as The Global Titilope, she mentored many individuals and presided over LISTEN IV (ADVENTURE) and Word War IV.",
     executives: [
       {
         name: "Naomi Kadiri",
         role: "Vice President",
-        image: "/team/admin-5/naomi-kadiri.jpg",
+        image: "/images/Naomi-Kadiri.webp",
       },
       {
         name: "Al-Amin Ademola",
         role: "General Secretary",
-        image: "/team/admin-5/al-amin-ademola.jpg",
+        image: "/images/Al-Amin-Ademola.webp",
       },
       {
         name: "Adenekan Obadare",
         role: "Asst. Gen. Secretary",
-        image: "/team/admin-5/adenekan-obadare.jpg",
+        image: "/images/Adenekan-Obadare.webp",
       },
       {
         name: "Erhuvwu'Oghene Akpomerha",
         role: "PR Expert",
-        image: "/team/admin-5/erhuvwu-akpomerha.jpg",
+        image: "/images/Erhuvwu’Oghene-Akpomerha.webp",
       },
       {
         name: "Aderibigbe Firdaoz",
         role: "Welfare Director",
-        image: "/team/admin-5/aderibigbe-firdaoz.jpg",
+        image: "/images/Aderibigbe-Firdaoz.webp",
       },
       {
         name: "Adetola Fathia",
         role: "Financial Secretary",
-        image: "/team/admin-5/adetola-fathia.jpg",
+        image: "/images/Adetola-Fathia.webp",
       },
       {
         name: "Victory Ashaka",
         role: "Ex-Officio",
-        image: "/team/admin-5/victory-ashaka.jpg",
+        image: "/images/Victory-Ashaka.webp",
       },
     ],
   },
   {
     term: "6th Administration · 2023–2024",
     president: "Boluwatife Kolawole",
+    presidentImage: "/images/Boluwatife-Kolawole.webp",
     note: "An adept compere, actor, writer and public speaker, Bolu coached emerging speakers and presided over LISTEN V (RESILIENCE), widely regarded as an outstanding edition.",
     executives: [
       {
         name: "Fathia Adetola",
         role: "Vice President",
-        image: "/team/admin-6/fathia-adetola.jpg",
+        image: "/images/Adetola-Fathia.webp",
       },
       {
         name: "Seide Agosu",
         role: "General Secretary",
-        image: "/team/admin-6/seide-agosu.jpg",
+        image: "/images/Seide-Agosu.webp",
       },
       {
         name: "Ajeniya Abdulquadri",
         role: "Asst. Gen. Secretary",
-        image: "/team/admin-6/ajeniya-abdulquadri.jpg",
+        image: "/images/Ajeniya-Abdulquadri.webp",
       },
       {
         name: "Ogunlaja Oluwanifemisimi",
         role: "PR Expert",
-        image: "/team/admin-6/ogunlaja-oluwanifemisimi.jpg",
+        image: "/images/Ogunlaja-Oluwanifemisimi.webp",
       },
       {
         name: "Mafe Olatunji",
         role: "Welfare Director",
-        image: "/team/admin-6/mafe-olatunji.jpg",
+        image: "/images/Mafe-Olatunji.webp",
       },
       {
         name: "Ademoye Summaya",
         role: "Financial Secretary",
-        image: "/team/admin-6/ademoye-summaya.jpg",
+        image: "/images/Ademoye-Summaya.webp",
       },
       {
         name: "Titilope Ibrahim",
         role: "Ex-Officio",
-        image: "/team/admin-6/titilope-ibrahim.jpg",
+        image: "/images/Titilope-Ibrahim.webp",
       },
     ],
   },
   {
     term: "7th Administration · 2024–2025",
     president: "Seide Agosu",
+    presidentImage: "/images/Seide-Agosu.webp",
     note: "Presided over LISTEN VI (EMERGENCE), held at the Buba Marwa Auditorium, further establishing LSUDS as the premier storytelling society in Nigeria.",
     executives: [
       {
         name: "Mafe Olatunji",
         role: "Vice President",
-        image: "/team/admin-7/mafe-olatunji.jpg",
+        image: "/images/Mafe-Olatunji.webp",
       },
       {
         name: "Similoluwa Ifedayo",
         role: "General Secretary",
-        image: "/team/admin-7/similoluwa-ifedayo.jpg",
+        image: "/images/Similoluwa-Ifedayo.webp",
       },
       {
         name: "Temitope Bakare",
         role: "Asst. Gen. Secretary",
-        image: "/team/admin-7/temitope-bakare.jpg",
+        image: "/images/Temitope-Bakare.webp",
       },
       {
         name: "Temiloluwa Bolawole",
         role: "PR Expert",
-        image: "/team/admin-7/temiloluwa-bolawole.jpg",
+        image: "/images/Temiloluwa-Bolawole.webp",
       },
       {
         name: "Zainab Ogunnowo",
         role: "Welfare Director",
-        image: "/team/admin-7/zainab-ogunnowo.jpg",
+        image: "/images/Zainab-Ogunnowo.webp",
       },
       {
         name: "Ayooluwatobi Fadare",
         role: "Financial Secretary",
-        image: "/team/admin-7/ayooluwatobi-fadare.jpg",
+        image: "/images/Ayooluwatobi-Fadare .webp",
       },
       {
         name: "Fathia Adetola",
         role: "Ex-Officio",
-        image: "/team/admin-7/fathia-adetola.jpg",
+        image: "/images/Adetola-Fathia.webp",
       },
     ],
   },
   {
     term: "8th Administration",
     president: "Aina Ayomide",
+    presidentImage: "/images/Aina-Ayomide.webp",
     note: "Presided over LISTEN VII (ZENITH), continuing the upward trajectory of the society's flagship storytelling event.",
     executives: [
       {
         name: "Temitope Bakare",
         role: "Vice President",
-        image: "/team/admin-8/temitope-bakare.jpg",
+        image: "/images/Temitope-Bakare.webp",
       },
       {
         name: "Kehinde Ajasa",
         role: "General Secretary",
-        image: "/team/admin-8/kehinde-ajasa.jpg",
+        image: "/images/Kehinde-Ajasa.webp",
       },
       {
         name: "Adeleye Oladimeji",
         role: "Asst. Gen. Secretary",
-        image: "/team/admin-8/adeleye-oladimeji.jpg",
+        image: "/images/Adeleye-Oladimeji.webp",
       },
       {
         name: "Oladipupo Ramadan",
         role: "PR Expert",
-        image: "/team/admin-8/oladipupo-ramadan.jpg",
+        image: "/images/Oladipupo-Ramadan.webp",
       },
       {
         name: "Adewumi Osonoiki",
         role: "Welfare Director",
-        image: "/team/admin-8/adewumi-osonoiki.jpg",
+        image: "/images/placeholder.webp",
       },
       {
         name: "Asikaburu Miracle",
         role: "Financial Secretary",
-        image: "/team/admin-8/asikaburu-miracle.jpg",
+        image: "/images/Asikaburu-Miracle.webp",
       },
       {
         name: "Ogunnowo Zainab",
         role: "Ex-Officio",
-        image: "/team/admin-8/ogunnowo-zainab.jpg",
+        image: "/images/Zainab-Ogunnowo.webp",
       },
     ],
   },
   {
     term: "9th Administration",
     president: "Asikaburu Miracle Ezinne",
+    presidentImage: "/images/Asikaburu-Miracle.webp",
     note: "Presided over LISTEN VIII (MOMENTUM) in April 2026, marking a new chapter of sustained momentum for LSUDS.",
     executives: [
       {
         name: "Atere Sarah",
         role: "Vice President",
-        image: "/team/admin-9/atere-sarah.jpg",
+        image: "/images/Atere-Sarah.webp",
       },
       {
         name: "Agosu Sewedo",
         role: "General Secretary",
-        image: "/team/admin-9/agosu-sewedo.jpg",
+        image: "/images/Agosu-Sewedo.webp",
       },
       {
         name: "Braimah Marvellous",
         role: "Asst. Gen. Secretary",
-        image: "/team/admin-9/braimah-marvellous.jpg",
+        image: "/images/Braimah-Marvellous.webp",
       },
       {
         name: "Sherifat Umar",
         role: "PR Expert",
-        image: "/team/admin-9/sherifat-umar.jpg",
+        image: "/images/Sherifat-Umar.webp",
       },
       {
         name: "Gift Okhumode",
         role: "Welfare Director",
-        image: "/team/admin-9/gift-okhumode.jpg",
+        image: "/images/Gift-Okhumode.webp",
       },
       {
         name: "Atere Mofiyinfoluwa",
         role: "Financial Secretary",
-        image: "/team/admin-9/atere-mofiyinfoluwa.jpg",
+        image: "/images/Atere-Mofiyinfoluwa.webp",
       },
       {
         name: "Oladipupo Ramadan",
         role: "Ex-Officio",
-        image: "/team/admin-9/oladipupo-ramadan.jpg",
+        image: "/images/Oladipupo-Ramadan.webp",
       },
     ],
   },
   {
     term: "10th Administration · Present",
     president: "Sherifat Umar",
+    presidentImage: "/images/Sherifat-Umar.webp",
     note: "The current administration, continuing LSUDS's mission of excellence, impact, and leadership development at Lagos State University.",
     isCurrent: true,
     executives: [
       {
         name: "Diaso Gabriel Alexander",
         role: "Vice President",
-        image: "/team/admin-10/diaso-gabriel.jpg",
+        image: "/images/Diaso-Gabriel-Alexander.webp",
       },
       {
         name: "Arowojobe Emmanuel Olawale",
         role: "General Secretary",
-        image: "/team/admin-10/arowojobe-emmanuel.jpg",
+        image: "/images/Arowojobe-Emmanuel-Olawale.webp",
       },
       {
         name: "Hamzat Kamilat Omotolani",
         role: "Asst. Gen. Secretary",
-        image: "/team/admin-10/hamzat-kamilat.jpg",
+        image: "/images/Hamzat-Kamilat-Omotolani.webp",
       },
       {
         name: "Adeoso Samuel Omotayo",
         role: "PR Expert",
-        image: "/team/admin-10/adeoso-samuel.jpg",
+        image: "/images/Adeoso-Samuel-Omotayo.webp",
       },
       {
         name: "Oguntubo Daniella Boluwatife",
         role: "Welfare Director",
-        image: "/team/admin-10/oguntubo-daniella.jpg",
+        image: "/images/Oguntubo-Daniella-Boluwatife.webp",
       },
       {
         name: "Suru Christiana Ebi-Erin",
         role: "Financial Secretary",
-        image: "/team/admin-10/suru-christiana.jpg",
+        image: "/images/Suru-Christiana-Ebi-Erin.webp",
       },
     ],
   },
@@ -866,7 +877,7 @@ export default function About() {
                     <div className="flex flex-col items-center text-center gap-3">
                       <div className="relative w-full aspect-square overflow-hidden bg-[var(--navy)]/5 border-2 border-[var(--crimson)]/40">
                         <Image
-                          src={`/team/admin-${administrations.indexOf(admin) + 1}/president.jpg`}
+                          src={admin.presidentImage}
                           alt={`Photo of ${admin.president}`}
                           fill
                           sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 18vw"

@@ -25,7 +25,6 @@ const exploreLinks = [
   { href: "/listen", label: "LISTEN", Icon: RiHeadphoneLine },
   { href: "/programs", label: "Programs", Icon: RiSwordLine },
   { href: "/achievevments", label: "Achievments", Icon: RiTeamLine },
-  { href: "/gallery", label: "Gallery", Icon: RiGalleryLine },
 ];
 
 const resourceLinks = [
