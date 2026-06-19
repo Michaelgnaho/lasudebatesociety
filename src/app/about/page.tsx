@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import {
   BookOpen,
@@ -11,6 +12,11 @@ import {
   Users,
   Zap,
 } from "lucide-react";
+import AnimatedContent from "@/components/AnimatedContent";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -516,9 +522,46 @@ const administrations: Administration[] = [
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
+/** Counts up to numeric stat values once scrolled into view; non-numeric values (e.g. "VIII", "∞") render as-is. */
+function StatValue({ value }: { value: string }) {
+  const ref = useRef<HTMLParagraphElement>(null);
+  const isNumeric = !Number.isNaN(Number(value));
+
+  useEffect(() => {
+    const el = ref.current;
+    const target = Number(value);
+    if (!el || Number.isNaN(target)) return;
+
+    const counter = { val: 0 };
+    const st = ScrollTrigger.create({
+      trigger: el,
+      start: "top 92%",
+      once: true,
+      onEnter: () => {
+        gsap.to(counter, {
+          val: target,
+          duration: 1.3,
+          ease: "power2.out",
+          onUpdate: () => {
+            el.textContent = Math.round(counter.val).toString();
+          },
+        });
+      },
+    });
+
+    return () => st.kill();
+  }, [value]);
+
+  return (
+    <p ref={ref} className="text-3xl font-semibold text-[var(--navy)]">
+      {isNumeric ? 0 : value}
+    </p>
+  );
+}
+
 function ExecutiveCard({ exec }: { exec: Executive }) {
   return (
-    <div className="flex flex-col items-center text-center gap-3">
+    <div className="exec-card group flex flex-col items-center text-center gap-3">
       {/* Photo */}
       <div className="relative w-full aspect-square overflow-hidden bg-[var(--navy)]/5 border border-[var(--line)]">
         <Image
@@ -526,7 +569,7 @@ function ExecutiveCard({ exec }: { exec: Executive }) {
           alt={`Photo of ${exec.name}`}
           fill
           sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 20vw"
-          className="object-cover object-top"
+          className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
         />
       </div>
       {/* Name & role */}
@@ -545,43 +588,161 @@ function ExecutiveCard({ exec }: { exec: Executive }) {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function About() {
+  const mainRef = useRef<HTMLDivElement>(null);
+  const timelineLineRef = useRef<HTMLDivElement>(null);
+
+  // Scroll-driven entrance animations for repeated list/grid items
+  useEffect(() => {
+    const scroller =
+      document.getElementById("snap-main-container") || undefined;
+
+    const ctx = gsap.context(() => {
+      const q = (sel: string) =>
+        Array.from(mainRef.current?.querySelectorAll<HTMLElement>(sel) ?? []);
+
+      const reveal = (sel: string, vars: gsap.TweenVars = {}) => {
+        const els = q(sel);
+        if (!els.length) return;
+        ScrollTrigger.batch(els, {
+          scroller,
+          start: "top 88%",
+          once: true,
+          onEnter: (batch) =>
+            gsap.to(batch, {
+              opacity: 1,
+              x: 0,
+              y: 0,
+              duration: 0.7,
+              ease: "power3.out",
+              stagger: 0.08,
+              ...vars,
+            }),
+        });
+      };
+
+      reveal(".milestone-item", { stagger: 0.12 });
+      reveal(".value-card", { stagger: 0.1 });
+      reveal(".member-row", { stagger: 0.045, duration: 0.5 });
+      reveal(".admin-row", { stagger: 0.08 });
+
+      // Timeline progress line draws in as the section scrolls past
+      if (timelineLineRef.current?.parentElement) {
+        gsap.to(timelineLineRef.current, {
+          scaleY: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: timelineLineRef.current.parentElement,
+            scroller,
+            start: "top 75%",
+            end: "bottom 65%",
+            scrub: 0.6,
+          },
+        });
+      }
+    }, mainRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  // Animate executive photo grid in whenever an administration accordion opens
+  useEffect(() => {
+    const detailsEls = Array.from(
+      mainRef.current?.querySelectorAll("details") ?? [],
+    ) as HTMLDetailsElement[];
+
+    const cleanupFns = detailsEls.map((el) => {
+      const onToggle = () => {
+        if (!el.open) return;
+        const cards = el.querySelectorAll<HTMLElement>(".exec-card");
+        gsap.fromTo(
+          cards,
+          { opacity: 0, y: 14, scale: 0.96 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.45,
+            stagger: 0.035,
+            ease: "power3.out",
+          },
+        );
+      };
+      el.addEventListener("toggle", onToggle);
+      return () => el.removeEventListener("toggle", onToggle);
+    });
+
+    return () => cleanupFns.forEach((fn) => fn());
+  }, []);
+
   return (
-    <main>
+    <main ref={mainRef}>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="py-24 sm:py-32 border-b border-[var(--line)]">
         <div className="section-shell">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--crimson)]">
-            About LSUDS
-          </p>
-          <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-medium text-[var(--navy)] max-w-3xl leading-[1.1]">
-            Built on{" "}
-            <span className="italic gradient-text">valour in speech.</span>
-          </h1>
-          <p className="mt-6 text-[var(--ink)]/60 max-w-xl text-lg leading-relaxed">
-            The Lagos State University Debate Society is the official public
-            speaking society of LASU — a community committed to developing
-            exceptional communicators, critical thinkers, and human leaders.
-          </p>
+          <AnimatedContent
+            distance={20}
+            duration={0.6}
+            ease="power3.out"
+            threshold={0.1}
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--crimson)]">
+              About LSUDS
+            </p>
+          </AnimatedContent>
+
+          <AnimatedContent
+            distance={40}
+            duration={0.8}
+            ease="power3.out"
+            delay={0.12}
+            threshold={0.1}
+          >
+            <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-medium text-[var(--navy)] max-w-3xl leading-[1.1]">
+              Built on{" "}
+              <span className="italic gradient-text">valour in speech.</span>
+            </h1>
+          </AnimatedContent>
+
+          <AnimatedContent
+            distance={30}
+            duration={0.7}
+            ease="power3.out"
+            delay={0.26}
+            threshold={0.1}
+          >
+            <p className="mt-6 text-[var(--ink)]/60 max-w-xl text-lg leading-relaxed">
+              The Lagos State University Debate Society is the official public
+              speaking society of LASU — a community committed to developing
+              exceptional communicators, critical thinkers, and human leaders.
+            </p>
+          </AnimatedContent>
 
           {/* Stat strip */}
-          <div
-            className="mt-14 grid grid-cols-2 sm:grid-cols-4 border divide-x divide-[var(--line)]"
-            style={{ borderColor: "var(--line)" }}
+          <AnimatedContent
+            distance={30}
+            duration={0.7}
+            ease="power3.out"
+            delay={0.4}
+            threshold={0.1}
+            scale={0.98}
           >
-            {[
-              { value: "2018", label: "Year founded" },
-              { value: "10", label: "Administrations" },
-              { value: "VIII", label: "LISTEN editions" },
-              { value: "∞", label: "Valour in Speech" },
-            ].map((s) => (
-              <div key={s.label} className="bg-white px-6 py-8">
-                <p className="text-3xl font-semibold text-[var(--navy)]">
-                  {s.value}
-                </p>
-                <p className="mt-1 text-sm text-[var(--ink)]/55">{s.label}</p>
-              </div>
-            ))}
-          </div>
+            <div
+              className="mt-14 grid grid-cols-2 sm:grid-cols-4 border divide-x divide-[var(--line)]"
+              style={{ borderColor: "var(--line)" }}
+            >
+              {[
+                { value: "2018", label: "Year founded" },
+                { value: "10", label: "Administrations" },
+                { value: "VIII", label: "LISTEN editions" },
+                { value: "∞", label: "Valour in Speech" },
+              ].map((s) => (
+                <div key={s.label} className="bg-white px-6 py-8">
+                  <StatValue value={s.value} />
+                  <p className="mt-1 text-sm text-[var(--ink)]/55">{s.label}</p>
+                </div>
+              ))}
+            </div>
+          </AnimatedContent>
         </div>
       </section>
 
@@ -591,53 +752,112 @@ export default function About() {
           <div className="flex flex-col lg:flex-row lg:gap-20">
             {/* Left */}
             <div className="lg:w-5/12 shrink-0">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--crimson)]">
-                Our story
-              </p>
-              <h2 className="mt-4 text-3xl sm:text-4xl font-medium text-[var(--navy)] leading-snug">
-                How it all <span className="italic gradient-text">began.</span>
-              </h2>
-              <p className="mt-6 text-[var(--ink)]/65 leading-relaxed">
-                In 2018, fourteen students at Lagos State University, Ojo,
-                gathered with a shared conviction: that excellence in
-                communication is inseparable from excellence in leadership. From
-                that belief, they built the Lagos State University Debate
-                Society.
-              </p>
-              <p className="mt-4 text-[var(--ink)]/65 leading-relaxed">
-                LSUDS was established as the official public speaking society of
-                LASU — with a mandate to represent the institution at external
-                competitions, train members in the art of public speaking, and
-                organise speaking events that serve the wider student community.
-              </p>
-              <p className="mt-4 text-[var(--ink)]/65 leading-relaxed">
-                From the very beginning, the society set itself apart not merely
-                as a debating club, but as a{" "}
-                <span className="font-medium text-[var(--navy)]">
-                  human development platform
-                </span>{" "}
-                — a place where voices are refined, ideas are sharpened, and
-                leaders are made.
-              </p>
+              <AnimatedContent
+                distance={30}
+                duration={0.7}
+                ease="power3.out"
+                threshold={0.15}
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--crimson)]">
+                  Our story
+                </p>
+                <h2 className="mt-4 text-3xl sm:text-4xl font-medium text-[var(--navy)] leading-snug">
+                  How it all{" "}
+                  <span className="italic gradient-text">began.</span>
+                </h2>
+              </AnimatedContent>
+
+              <AnimatedContent
+                distance={30}
+                duration={0.7}
+                ease="power3.out"
+                delay={0.15}
+                threshold={0.15}
+              >
+                <p className="mt-6 text-[var(--ink)]/65 leading-relaxed">
+                  In 2018, fourteen students at Lagos State University, Ojo,
+                  gathered with a shared conviction: that excellence in
+                  communication is inseparable from excellence in leadership.
+                  From that belief, they built the Lagos State University Debate
+                  Society.
+                </p>
+              </AnimatedContent>
+
+              <AnimatedContent
+                distance={30}
+                duration={0.7}
+                ease="power3.out"
+                delay={0.3}
+                threshold={0.15}
+              >
+                <p className="mt-4 text-[var(--ink)]/65 leading-relaxed">
+                  LSUDS was established as the official public speaking society
+                  of LASU — with a mandate to represent the institution at
+                  external competitions, train members in the art of public
+                  speaking, and organise speaking events that serve the wider
+                  student community.
+                </p>
+              </AnimatedContent>
+
+              <AnimatedContent
+                distance={30}
+                duration={0.7}
+                ease="power3.out"
+                delay={0.45}
+                threshold={0.15}
+              >
+                <p className="mt-4 text-[var(--ink)]/65 leading-relaxed">
+                  From the very beginning, the society set itself apart not
+                  merely as a debating club, but as a{" "}
+                  <span className="font-medium text-[var(--navy)]">
+                    human development platform
+                  </span>{" "}
+                  — a place where voices are refined, ideas are sharpened, and
+                  leaders are made.
+                </p>
+              </AnimatedContent>
             </div>
 
             {/* Timeline */}
             <div className="mt-14 lg:mt-0 lg:flex-1">
-              <div className="relative pl-6 border-l border-[var(--line)] space-y-8">
-                {milestones.map((m) => (
-                  <div key={m.year} className="relative">
-                    <span
-                      className="absolute -left-[1.85rem] top-1 h-3 w-3 rounded-full bg-[var(--crimson)] ring-4 ring-white"
-                      aria-hidden="true"
-                    />
-                    <p className="text-xs font-semibold uppercase tracking-widest text-[var(--crimson)]">
-                      {m.year}
-                    </p>
-                    <p className="mt-1 text-sm text-[var(--ink)]/70 leading-relaxed">
-                      {m.event}
-                    </p>
-                  </div>
-                ))}
+              <div className="relative pl-6">
+                {/* base track */}
+                <div
+                  className="absolute left-0 top-0 bottom-0 w-px"
+                  style={{ background: "var(--line)" }}
+                  aria-hidden="true"
+                />
+                {/* progress line — draws in as you scroll */}
+                <div
+                  ref={timelineLineRef}
+                  className="absolute left-0 top-0 w-px origin-top"
+                  style={{
+                    background: "var(--crimson)",
+                    height: "100%",
+                    transform: "scaleY(0)",
+                  }}
+                  aria-hidden="true"
+                />
+
+                <div className="space-y-8">
+                  {milestones.map((m) => (
+                    <div
+                      key={m.year}
+                      className="relative milestone-item opacity-0 -translate-x-6"
+                    >
+                      <span
+                        className="absolute -left-[1.85rem] top-1 h-3 w-3 rounded-full bg-[var(--crimson)] ring-4 ring-white"
+                        aria-hidden="true"
+                      />
+                      <p className="text-xs font-semibold uppercase tracking-widest text-[var(--crimson)]">
+                        {m.year}
+                      </p>
+                      <p className="mt-1 text-sm text-[var(--ink)]/70 leading-relaxed">
+                        {m.event}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -651,8 +871,16 @@ export default function About() {
             className="grid grid-cols-1 lg:grid-cols-2 border divide-y lg:divide-y-0 lg:divide-x divide-[var(--line)]"
             style={{ borderColor: "var(--line)" }}
           >
-            {/* Mission */}
-            <div className="bg-white p-10 lg:p-14">
+            {/* Mission — slides in from the left */}
+            <AnimatedContent
+              direction="horizontal"
+              reverse
+              distance={60}
+              duration={0.8}
+              ease="power3.out"
+              threshold={0.15}
+              className="bg-white p-10 lg:p-14"
+            >
               <div className="flex items-center gap-3">
                 <Flame
                   className="h-6 w-6 text-[var(--crimson)]"
@@ -681,10 +909,18 @@ export default function About() {
                 </span>{" "}
                 as the emblem of this commitment.
               </p>
-            </div>
+            </AnimatedContent>
 
-            {/* Vision */}
-            <div className="bg-[var(--navy)] p-10 lg:p-14">
+            {/* Vision — slides in from the right */}
+            <AnimatedContent
+              direction="horizontal"
+              distance={60}
+              duration={0.8}
+              ease="power3.out"
+              delay={0.15}
+              threshold={0.15}
+              className="bg-[var(--navy)] p-10 lg:p-14"
+            >
               <div className="flex items-center gap-3">
                 <Eye className="h-6 w-6 text-[var(--sky)]" strokeWidth={1.5} />
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--sky)]">
@@ -708,7 +944,7 @@ export default function About() {
                   Valour in Speech
                 </p>
               </div>
-            </div>
+            </AnimatedContent>
           </div>
         </div>
       </section>
@@ -717,14 +953,29 @@ export default function About() {
       <section className="py-24 sm:py-28 border-b border-[var(--line)]">
         <div className="section-shell">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[var(--navy)] max-w-xl">
-              Principles that{" "}
-              <span className="italic gradient-text">guide us.</span>
-            </h2>
-            <p className="text-[var(--ink)]/60 max-w-sm">
-              Six values form the backbone of everything LSUDS does — from
-              training sessions to competitions to community events.
-            </p>
+            <AnimatedContent
+              distance={30}
+              duration={0.7}
+              ease="power3.out"
+              threshold={0.15}
+            >
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[var(--navy)] max-w-xl">
+                Principles that{" "}
+                <span className="italic gradient-text">guide us.</span>
+              </h2>
+            </AnimatedContent>
+            <AnimatedContent
+              distance={20}
+              duration={0.6}
+              ease="power3.out"
+              delay={0.15}
+              threshold={0.15}
+            >
+              <p className="text-[var(--ink)]/60 max-w-sm">
+                Six values form the backbone of everything LSUDS does — from
+                training sessions to competitions to community events.
+              </p>
+            </AnimatedContent>
           </div>
 
           <div
@@ -734,7 +985,7 @@ export default function About() {
             {coreValues.map((v, i) => (
               <div
                 key={v.title}
-                className={`bg-white p-8 ${i >= 3 ? "border-t border-[var(--line)]" : ""}`}
+                className={`value-card opacity-0 translate-y-6 bg-white p-8 ${i >= 3 ? "border-t border-[var(--line)]" : ""}`}
               >
                 <v.icon
                   className="h-7 w-7 text-[var(--crimson)]"
@@ -756,14 +1007,29 @@ export default function About() {
       <section className="py-24 sm:py-28 border-b border-[var(--line)]">
         <div className="section-shell">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[var(--navy)] max-w-xl">
-              The fourteen who{" "}
-              <span className="italic gradient-text">started it all.</span>
-            </h2>
-            <p className="text-[var(--ink)]/60 max-w-sm">
-              In 2018, these individuals came together to build what would
-              become the most impactful public speaking society at LASU.
-            </p>
+            <AnimatedContent
+              distance={30}
+              duration={0.7}
+              ease="power3.out"
+              threshold={0.15}
+            >
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[var(--navy)] max-w-xl">
+                The fourteen who{" "}
+                <span className="italic gradient-text">started it all.</span>
+              </h2>
+            </AnimatedContent>
+            <AnimatedContent
+              distance={20}
+              duration={0.6}
+              ease="power3.out"
+              delay={0.15}
+              threshold={0.15}
+            >
+              <p className="text-[var(--ink)]/60 max-w-sm">
+                In 2018, these individuals came together to build what would
+                become the most impactful public speaking society at LASU.
+              </p>
+            </AnimatedContent>
           </div>
 
           <div
@@ -788,7 +1054,7 @@ export default function About() {
             ].map((name, i) => (
               <div
                 key={name}
-                className="flex items-center gap-6 bg-white px-8 py-5"
+                className="member-row opacity-0 -translate-x-4 flex items-center gap-6 bg-white px-8 py-5"
               >
                 <span className="text-xs font-mono text-[var(--ink)]/30 w-5 shrink-0">
                   {String(i + 1).padStart(2, "0")}
@@ -809,21 +1075,36 @@ export default function About() {
       <section className="py-24 sm:py-28">
         <div className="section-shell">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[var(--navy)] max-w-xl">
-              A decade of{" "}
-              <span className="italic gradient-text">leadership.</span>
-            </h2>
-            <p className="text-[var(--ink)]/60 max-w-sm">
-              Ten administrations, each building on the last — a living record
-              of those who have carried the LSUDS standard forward.
-            </p>
+            <AnimatedContent
+              distance={30}
+              duration={0.7}
+              ease="power3.out"
+              threshold={0.15}
+            >
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[var(--navy)] max-w-xl">
+                A decade of{" "}
+                <span className="italic gradient-text">leadership.</span>
+              </h2>
+            </AnimatedContent>
+            <AnimatedContent
+              distance={20}
+              duration={0.6}
+              ease="power3.out"
+              delay={0.15}
+              threshold={0.15}
+            >
+              <p className="text-[var(--ink)]/60 max-w-sm">
+                Ten administrations, each building on the last — a living record
+                of those who have carried the LSUDS standard forward.
+              </p>
+            </AnimatedContent>
           </div>
 
           <div className="space-y-px border border-[var(--line)]">
             {administrations.map((admin) => (
               <details
                 key={admin.term}
-                className="group bg-white open:bg-[var(--navy)]/[0.02]"
+                className="group admin-row opacity-0 translate-y-6 bg-white open:bg-[var(--navy)]/[0.02]"
               >
                 <summary className="flex cursor-pointer items-center justify-between gap-6 px-8 py-6 list-none group-hover:bg-[var(--navy)]/[0.02] transition-colors">
                   <div className="flex items-center gap-5 min-w-0">
@@ -871,17 +1152,17 @@ export default function About() {
                     {admin.note}
                   </p>
 
-                  {/* Executive photo grid */}
+                  {/* Executive photo grid — animates in on toggle open */}
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5">
                     {/* President card — always first */}
-                    <div className="flex flex-col items-center text-center gap-3">
+                    <div className="exec-card group flex flex-col items-center text-center gap-3">
                       <div className="relative w-full aspect-square overflow-hidden bg-[var(--navy)]/5 border-2 border-[var(--crimson)]/40">
                         <Image
                           src={admin.presidentImage}
                           alt={`Photo of ${admin.president}`}
                           fill
                           sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 18vw"
-                          className="object-cover object-top"
+                          className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                         />
                       </div>
                       <div>

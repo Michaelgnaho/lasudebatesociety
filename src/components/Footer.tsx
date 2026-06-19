@@ -17,7 +17,7 @@ import {
   RiHomeLine,
 } from "react-icons/ri";
 import { RiRssLine } from "react-icons/ri";
-import { RiMicFill } from "react-icons/ri";
+import Image from "next/image";
 
 const exploreLinks = [
   { href: "/", label: "Home", Icon: RiHomeLine },
@@ -70,37 +70,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           {/* ── BRAND ── */}
           <div>
-            <Link href="/" className="flex items-center gap-3 no-underline">
-              <div
-                className="flex h-10 w-10 items-center justify-center rounded-full flex-shrink-0"
-                style={{
-                  background: "var(--grad-icon)",
-                  boxShadow: "0 4px 14px rgba(26,50,99,0.4)",
-                }}
-              >
-                <RiMicFill className="text-white" size={16} />
-              </div>
-              <div className="leading-tight">
-                <span
-                  className="block text-lg font-bold tracking-tight"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--crimson)",
-                    lineHeight: 1.1,
-                  }}
-                >
-                  LASU
-                </span>
-                <span
-                  className="block text-[0.6rem] font-semibold uppercase tracking-[0.22em]"
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    color: "var(--sky)",
-                    marginTop: "1px",
-                  }}
-                >
-                  Debate Society
-                </span>
+            <Link href="/" className="flex ">
+              <div className="relative h-12 w-26">
+                <Image
+                  src="/images/logo.webp"
+                  alt="LSUDS logo"
+                  height={100}
+                  width={120}
+                  className=""
+                />
               </div>
             </Link>
 

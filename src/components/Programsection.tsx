@@ -1,3 +1,6 @@
+"use client";
+import Image from "next/image";
+import Link from "next/link";
 import {
   ArrowRight,
   BookOpenText,
@@ -5,6 +8,7 @@ import {
   Crown,
   Megaphone,
 } from "lucide-react";
+import AnimatedContent from "@/components/AnimatedContent";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -25,6 +29,7 @@ const programs = [
     ],
     cta: { label: "Explore LISTEN", href: "/listen" },
     dark: true,
+    image: "/images/listen/listen-hero2.webp",
   },
   {
     id: "word-war",
@@ -42,6 +47,7 @@ const programs = [
     ],
     cta: { label: "How to participate", href: "/programs/word-war" },
     dark: false,
+    image: "/images/listen/WORD-WAR.jpg",
   },
   {
     id: "change-of-guard",
@@ -59,6 +65,7 @@ const programs = [
     ],
     cta: { label: "Learn more", href: "/programs/change-of-guard" },
     dark: false,
+    image: "/images/listen/COG.jpg",
   },
   {
     id: "call-out",
@@ -77,6 +84,7 @@ const programs = [
     cta: { label: "Learn more", href: "/programs/call-out" },
     dark: false,
     accent: true,
+    image: "/images/listen/CALL-OUT.jpg",
   },
 ];
 
@@ -84,250 +92,453 @@ const programs = [
 
 export default function Programs() {
   return (
-    <section id="programs" className="py-24 sm:py-28 bg-[var(--sky-faint)]">
+    <section id="programs" className="py-24 sm:py-28 bg-(--sky-faint)">
       <div className="section-shell">
         {/* Section header */}
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--crimson)]">
-          Our programmes
-        </p>
-        <div className="mt-4 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[var(--navy)] max-w-2xl">
-            Four stages.{" "}
-            <span className="italic gradient-text">One mission.</span>
-          </h2>
-          <p className="text-[var(--ink)]/55 max-w-sm">
-            From flagship events to street debates, every LSUDS programme is
-            built around one belief: that the right words, spoken well, can
-            change everything.
+        <AnimatedContent
+          distance={20}
+          duration={0.6}
+          ease="power3.out"
+          threshold={0.1}
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--crimson)]">
+            Our programmes
           </p>
+        </AnimatedContent>
+
+        <div className="mt-4 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+          <AnimatedContent
+            distance={40}
+            duration={0.8}
+            ease="power3.out"
+            delay={0.1}
+            threshold={0.1}
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[var(--navy)] max-w-2xl">
+              Four stages.{" "}
+              <span className="italic gradient-text">One mission.</span>
+            </h2>
+          </AnimatedContent>
+          <AnimatedContent
+            distance={30}
+            duration={0.7}
+            ease="power3.out"
+            delay={0.25}
+            threshold={0.1}
+          >
+            <p className="text-[var(--ink)]/55 max-w-sm">
+              From flagship events to street debates, every LSUDS programme is
+              built around one belief: that the right words, spoken well, can
+              change everything.
+            </p>
+          </AnimatedContent>
         </div>
 
         {/* ── Top row: LISTEN (large) + Word War ───────────────────────── */}
         <div className="mt-12 grid grid-cols-1 gap-px lg:grid-cols-2 bg-[var(--line)]">
           {/* LISTEN — dark card */}
-          <div
-            className="relative flex flex-col justify-between overflow-hidden p-8 sm:p-10 min-h-[480px]"
-            style={{ background: "var(--navy)" }}
-          >
-            {/* decorative glyph */}
-            <span
-              aria-hidden
-              className="absolute -bottom-12 -right-4 text-[13rem] select-none font-serif leading-none"
-              style={{
-                color: "rgba(255,255,255,0.04)",
-                WebkitTextStroke: "1px rgba(111,168,220,0.3)",
-              }}
-            >
-              &rdquo;
-            </span>
+          <div className="relative flex flex-col overflow-hidden bg-[var(--navy)]">
+            {/* Image Area */}
+            <div className="relative h-80 sm:h-96 overflow-hidden">
+              <Image
+                src={programs[0].image}
+                alt={programs[0].name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+            </div>
 
-            <div className="relative z-10 flex flex-col h-full">
-              {/* icon + tag */}
-              <div className="flex items-start justify-between">
-                <span
-                  className="flex h-12 w-12 items-center justify-center text-white"
-                  style={{ background: "var(--grad-icon)" }}
-                >
-                  <BookOpenText className="h-5 w-5" />
-                </span>
-                <span className="text-[10px] font-semibold uppercase tracking-widest text-white/30 border border-white/10 px-3 py-1.5">
-                  {programs[0].tag}
-                </span>
-              </div>
-
-              <p className="mt-6 font-mono text-[11px] tracking-[0.28em] uppercase text-[var(--sky)]">
-                {programs[0].eyebrow}
-              </p>
-              <h3 className="mt-2 text-4xl sm:text-5xl font-semibold text-white tracking-tight">
-                {programs[0].name}
-              </h3>
-              <p className="mt-4 text-white/65 leading-relaxed max-w-md">
-                {programs[0].description}
-              </p>
-
-              {/* highlights */}
-              <ul className="mt-6 space-y-2 flex-1">
-                {programs[0].highlights.map((h) => (
-                  <li
-                    key={h}
-                    className="flex items-start gap-2.5 text-sm text-white/50"
-                  >
-                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[var(--sky)] shrink-0" />
-                    {h}
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href={programs[0].cta.href}
-                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white group w-fit"
+            <div className="relative flex flex-col justify-between p-8 sm:p-10 min-h-[420px]">
+              {/* decorative glyph */}
+              <span
+                aria-hidden
+                className="absolute -bottom-12 -right-4 text-[13rem] select-none font-serif leading-none"
+                style={{
+                  color: "rgba(255,255,255,0.04)",
+                  WebkitTextStroke: "1px rgba(111,168,220,0.3)",
+                }}
               >
-                {programs[0].cta.label}
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+                &rdquo;
+              </span>
+
+              <div className="relative z-10 flex flex-col h-full">
+                {/* icon + tag */}
+                <div className="flex items-start justify-between">
+                  <span
+                    className="flex h-12 w-12 items-center justify-center text-white"
+                    style={{ background: "var(--grad-icon)" }}
+                  >
+                    <BookOpenText className="h-5 w-5" />
+                  </span>
+                  <span className="text-[10px] font-semibold uppercase tracking-widest text-white/30 border border-white/10 px-3 py-1.5">
+                    {programs[0].tag}
+                  </span>
+                </div>
+
+                <AnimatedContent
+                  distance={30}
+                  duration={0.7}
+                  ease="power3.out"
+                  delay={0.1}
+                  threshold={0.15}
+                >
+                  <p className="mt-6 font-mono text-[11px] tracking-[0.28em] uppercase text-[var(--sky)]">
+                    {programs[0].eyebrow}
+                  </p>
+                  <h3 className="mt-2 text-4xl sm:text-5xl font-semibold text-white tracking-tight">
+                    {programs[0].name}
+                  </h3>
+                </AnimatedContent>
+
+                <AnimatedContent
+                  distance={30}
+                  duration={0.7}
+                  ease="power3.out"
+                  delay={0.25}
+                  threshold={0.15}
+                >
+                  <p className="mt-4 text-white/65 leading-relaxed max-w-md">
+                    {programs[0].description}
+                  </p>
+                </AnimatedContent>
+
+                {/* highlights */}
+                <ul className="mt-6 space-y-2 flex-1">
+                  {programs[0].highlights.map((h, i) => (
+                    <AnimatedContent
+                      key={h}
+                      distance={20}
+                      duration={0.6}
+                      ease="power3.out"
+                      delay={0.35 + i * 0.05}
+                      threshold={0.2}
+                    >
+                      <li className="flex items-start gap-2.5 text-sm text-white/50">
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[var(--sky)] shrink-0" />
+                        {h}
+                      </li>
+                    </AnimatedContent>
+                  ))}
+                </ul>
+
+                <AnimatedContent
+                  distance={30}
+                  duration={0.7}
+                  ease="power3.out"
+                  delay={0.6}
+                  threshold={0.2}
+                >
+                  <Link
+                    href="/programs"
+                    className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white group w-fit"
+                  >
+                    {programs[0].cta.label}
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </AnimatedContent>
+              </div>
             </div>
           </div>
 
           {/* Word War — light card */}
-          <div className="relative flex flex-col justify-between overflow-hidden p-8 sm:p-10 min-h-[480px] bg-white">
-            <span
-              aria-hidden
-              className="absolute -bottom-12 -right-4 text-[13rem] select-none font-serif leading-none text-[var(--navy)]/[0.04]"
-              style={{ WebkitTextStroke: "1px rgba(12,35,64,0.07)" }}
-            >
-              &rdquo;
-            </span>
+          <div className="relative flex flex-col overflow-hidden bg-white">
+            {/* Image Area */}
+            <div className="relative h-80 sm:h-96 overflow-hidden">
+              <Image
+                src={programs[1].image}
+                alt={programs[1].name}
+                fill
+                className="object-fill"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+            </div>
 
-            <div className="relative z-10 flex flex-col h-full">
-              <div className="flex items-start justify-between">
-                <span className="flex h-12 w-12 items-center justify-center text-white bg-(--crimson)">
-                  <Swords className="h-5 w-5" />
-                </span>
-                <span className="text-[10px] font-semibold uppercase tracking-widest text-(--ink)/30 border border-[var(--line)] px-3 py-1.5">
-                  {programs[1].tag}
-                </span>
-              </div>
-
-              <p className="mt-6 font-mono text-[11px] tracking-[0.28em] uppercase text-(--sky-mid)">
-                {programs[1].eyebrow}
-              </p>
-              <h3 className="mt-2 text-4xl sm:text-5xl font-semibold text-(--navy) tracking-tight">
-                {programs[1].name}
-              </h3>
-              <p className="mt-4 text-(--ink)/65 leading-relaxed max-w-md">
-                {programs[1].description}
-              </p>
-
-              <ul className="mt-6 space-y-2 flex-1">
-                {programs[1].highlights.map((h) => (
-                  <li
-                    key={h}
-                    className="flex items-start gap-2.5 text-sm text-(--ink)/50"
-                  >
-                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-(--crimson) shrink-0" />
-                    {h}
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href={programs[1].cta.href}
-                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-(--navy) border-b-2 pb-1 w-fit group"
-                style={{ borderColor: "var(--crimson)" }}
+            <div className="relative flex flex-col justify-between p-8 sm:p-10 min-h-[420px]">
+              <span
+                aria-hidden
+                className="absolute -bottom-12 -right-4 text-[13rem] select-none font-serif leading-none text-[var(--navy)]/[0.04]"
+                style={{ WebkitTextStroke: "1px rgba(12,35,64,0.07)" }}
               >
-                {programs[1].cta.label}
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+                &rdquo;
+              </span>
+
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-start justify-between">
+                  <span className="flex h-12 w-12 items-center justify-center text-white bg-[var(--crimson)]">
+                    <Swords className="h-5 w-5" />
+                  </span>
+                  <span className="text-[10px] font-semibold uppercase tracking-widest text-[var(--ink)]/30 border border-[var(--line)] px-3 py-1.5">
+                    {programs[1].tag}
+                  </span>
+                </div>
+
+                <AnimatedContent
+                  distance={30}
+                  duration={0.7}
+                  ease="power3.out"
+                  delay={0.1}
+                  threshold={0.15}
+                >
+                  <p className="mt-6 font-mono text-[11px] tracking-[0.28em] uppercase text-[var(--sky-mid)]">
+                    {programs[1].eyebrow}
+                  </p>
+                  <h3 className="mt-2 text-4xl sm:text-5xl font-semibold text-[var(--navy)] tracking-tight">
+                    {programs[1].name}
+                  </h3>
+                </AnimatedContent>
+
+                <AnimatedContent
+                  distance={30}
+                  duration={0.7}
+                  ease="power3.out"
+                  delay={0.25}
+                  threshold={0.15}
+                >
+                  <p className="mt-4 text-[var(--ink)]/65 leading-relaxed max-w-md">
+                    {programs[1].description}
+                  </p>
+                </AnimatedContent>
+
+                <ul className="mt-6 space-y-2 flex-1">
+                  {programs[1].highlights.map((h, i) => (
+                    <AnimatedContent
+                      key={h}
+                      distance={20}
+                      duration={0.6}
+                      ease="power3.out"
+                      delay={0.35 + i * 0.05}
+                      threshold={0.2}
+                    >
+                      <li className="flex items-start gap-2.5 text-sm text-[var(--ink)]/50">
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[var(--crimson)] shrink-0" />
+                        {h}
+                      </li>
+                    </AnimatedContent>
+                  ))}
+                </ul>
+
+                <AnimatedContent
+                  distance={30}
+                  duration={0.7}
+                  ease="power3.out"
+                  delay={0.6}
+                  threshold={0.2}
+                >
+                  <Link
+                    href="/programs"
+                    className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[var(--navy)] border-b-2 pb-1 w-fit group"
+                    style={{ borderColor: "var(--crimson)" }}
+                  >
+                    {programs[1].cta.label}
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </AnimatedContent>
+              </div>
             </div>
           </div>
         </div>
 
         {/* ── Bottom row: Change of Guard + Call-Out ───────────────────── */}
-        <div className="grid grid-cols-1 gap-px lg:grid-cols-2 bg-(--line)">
+        <div className="grid grid-cols-1 gap-px lg:grid-cols-2 bg-[var(--line)]">
           {/* Change of Guard */}
-          <div className="relative flex flex-col overflow-hidden p-8 sm:p-10 min-h-100 bg-white border-t border-[var(--line)]">
-            <div className="flex items-start justify-between">
-              <span
-                className="flex h-12 w-12 items-center justify-center text-white"
-                style={{ background: "var(--grad-icon)" }}
-              >
-                <Crown className="h-5 w-5" />
-              </span>
-              <span className="text-[10px] font-semibold uppercase tracking-widest text-[var(--ink)]/30 border border-[var(--line)] px-3 py-1.5">
-                {programs[2].tag}
-              </span>
+          <div className="relative flex flex-col overflow-hidden bg-white border-t border-[var(--line)]">
+            {/* Image Area */}
+            <div className="relative h-80 sm:h-96 overflow-hidden">
+              <Image
+                src={programs[2].image}
+                alt={programs[2].name}
+                fill
+                className="object-fill"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
             </div>
 
-            <p className="mt-6 font-mono text-[11px] tracking-[0.28em] uppercase text-[var(--sky-mid)]">
-              {programs[2].eyebrow}
-            </p>
-            <h3 className="mt-2 text-3xl sm:text-4xl font-semibold text-[var(--navy)] tracking-tight leading-snug">
-              Change of Guard
-              <br />
-              <span className="text-[var(--crimson)]">&amp; Poetry Slam</span>
-            </h3>
-            <p className="mt-4 text-[var(--ink)]/65 leading-relaxed flex-1">
-              {programs[2].description}
-            </p>
-
-            <ul className="mt-5 space-y-2">
-              {programs[2].highlights.map((h) => (
-                <li
-                  key={h}
-                  className="flex items-start gap-2.5 text-sm text-[var(--ink)]/50"
+            <div className="relative p-8 sm:p-10 min-h-[400px] flex flex-col">
+              <div className="flex items-start justify-between">
+                <span
+                  className="flex h-12 w-12 items-center justify-center text-white"
+                  style={{ background: "var(--grad-icon)" }}
                 >
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[var(--navy)] shrink-0" />
-                  {h}
-                </li>
-              ))}
-            </ul>
+                  <Crown className="h-5 w-5" />
+                </span>
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-[var(--ink)]/30 border border-[var(--line)] px-3 py-1.5">
+                  {programs[2].tag}
+                </span>
+              </div>
 
-            <a
-              href={programs[2].cta.href}
-              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[var(--navy)] border-b-2 pb-1 w-fit group"
-              style={{ borderColor: "var(--navy)" }}
-            >
-              {programs[2].cta.label}
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </a>
+              <AnimatedContent
+                distance={30}
+                duration={0.7}
+                ease="power3.out"
+                delay={0.1}
+                threshold={0.15}
+              >
+                <p className="mt-6 font-mono text-[11px] tracking-[0.28em] uppercase text-[var(--sky-mid)]">
+                  {programs[2].eyebrow}
+                </p>
+                <h3 className="mt-2 text-3xl sm:text-4xl font-semibold text-[var(--navy)] tracking-tight leading-snug">
+                  Change of Guard
+                  <br />
+                  <span className="text-[var(--crimson)]">
+                    &amp; Poetry Slam
+                  </span>
+                </h3>
+              </AnimatedContent>
+
+              <AnimatedContent
+                distance={30}
+                duration={0.7}
+                ease="power3.out"
+                delay={0.25}
+                threshold={0.15}
+              >
+                <p className="mt-4 text-[var(--ink)]/65 leading-relaxed flex-1">
+                  {programs[2].description}
+                </p>
+              </AnimatedContent>
+
+              <ul className="mt-5 space-y-2">
+                {programs[2].highlights.map((h, i) => (
+                  <AnimatedContent
+                    key={h}
+                    distance={20}
+                    duration={0.6}
+                    ease="power3.out"
+                    delay={0.35 + i * 0.05}
+                    threshold={0.2}
+                  >
+                    <li className="flex items-start gap-2.5 text-sm text-[var(--ink)]/50">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[var(--navy)] shrink-0" />
+                      {h}
+                    </li>
+                  </AnimatedContent>
+                ))}
+              </ul>
+
+              <AnimatedContent
+                distance={30}
+                duration={0.7}
+                ease="power3.out"
+                delay={0.6}
+                threshold={0.2}
+              >
+                <Link
+                  href="programs"
+                  className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[var(--navy)] border-b-2 pb-1 w-fit group"
+                  style={{ borderColor: "var(--navy)" }}
+                >
+                  {programs[2].cta.label}
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </AnimatedContent>
+            </div>
           </div>
 
           {/* Call-Out — crimson accent card */}
           <div
-            className="relative flex flex-col overflow-hidden p-8 sm:p-10 min-h-[400px] border-t"
+            className="relative flex flex-col overflow-hidden border-t"
             style={{
               background: "var(--crimson)",
               borderColor: "var(--crimson)",
             }}
           >
-            {/* decorative glyph */}
-            <span
-              aria-hidden
-              className="absolute -bottom-10 -right-4 text-[13rem] select-none font-serif leading-none"
-              style={{ color: "rgba(255,255,255,0.06)" }}
-            >
-              !
-            </span>
+            {/* Image Area */}
+            <div className="relative h-80 sm:h-96 overflow-hidden">
+              <Image
+                src={programs[3].image}
+                alt={programs[3].name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
+            </div>
 
-            <div className="relative z-10 flex flex-col h-full">
-              <div className="flex items-start justify-between">
-                <span className="flex h-12 w-12 items-center justify-center bg-white/15 text-white">
-                  <Megaphone className="h-5 w-5" />
-                </span>
-                <span className="text-[10px] font-semibold uppercase tracking-widest text-white/40 border border-white/20 px-3 py-1.5">
-                  {programs[3].tag}
-                </span>
-              </div>
-
-              <p className="mt-6 font-mono text-[11px] tracking-[0.28em] uppercase text-white/60">
-                {programs[3].eyebrow}
-              </p>
-              <h3 className="mt-2 text-3xl sm:text-4xl font-semibold text-white tracking-tight">
-                {programs[3].name}
-              </h3>
-              <p className="mt-4 text-white/75 leading-relaxed flex-1">
-                {programs[3].description}
-              </p>
-
-              <ul className="mt-5 space-y-2">
-                {programs[3].highlights.map((h) => (
-                  <li
-                    key={h}
-                    className="flex items-start gap-2.5 text-sm text-white/60"
-                  >
-                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-white shrink-0" />
-                    {h}
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href={programs[3].cta.href}
-                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white border-b-2 border-white/40 pb-1 w-fit group"
+            <div className="relative p-8 sm:p-10 min-h-[400px] flex flex-col">
+              {/* decorative glyph */}
+              <span
+                aria-hidden
+                className="absolute -bottom-10 -right-4 text-[13rem] select-none font-serif leading-none"
+                style={{ color: "rgba(255,255,255,0.06)" }}
               >
-                {programs[3].cta.label}
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+                !
+              </span>
+
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-start justify-between">
+                  <span className="flex h-12 w-12 items-center justify-center bg-white/15 text-white">
+                    <Megaphone className="h-5 w-5" />
+                  </span>
+                  <span className="text-[10px] font-semibold uppercase tracking-widest text-white/40 border border-white/20 px-3 py-1.5">
+                    {programs[3].tag}
+                  </span>
+                </div>
+
+                <AnimatedContent
+                  distance={30}
+                  duration={0.7}
+                  ease="power3.out"
+                  delay={0.1}
+                  threshold={0.15}
+                >
+                  <p className="mt-6 font-mono text-[11px] tracking-[0.28em] uppercase text-white/60">
+                    {programs[3].eyebrow}
+                  </p>
+                  <h3 className="mt-2 text-3xl sm:text-4xl font-semibold text-white tracking-tight">
+                    {programs[3].name}
+                  </h3>
+                </AnimatedContent>
+
+                <AnimatedContent
+                  distance={30}
+                  duration={0.7}
+                  ease="power3.out"
+                  delay={0.25}
+                  threshold={0.15}
+                >
+                  <p className="mt-4 text-white/75 leading-relaxed flex-1">
+                    {programs[3].description}
+                  </p>
+                </AnimatedContent>
+
+                <ul className="mt-5 space-y-2">
+                  {programs[3].highlights.map((h, i) => (
+                    <AnimatedContent
+                      key={h}
+                      distance={20}
+                      duration={0.6}
+                      ease="power3.out"
+                      delay={0.35 + i * 0.05}
+                      threshold={0.2}
+                    >
+                      <li className="flex items-start gap-2.5 text-sm text-white/60">
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-white shrink-0" />
+                        {h}
+                      </li>
+                    </AnimatedContent>
+                  ))}
+                </ul>
+
+                <AnimatedContent
+                  distance={30}
+                  duration={0.7}
+                  ease="power3.out"
+                  delay={0.6}
+                  threshold={0.2}
+                >
+                  <a
+                    href="/programs"
+                    className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white border-b-2 border-white/40 pb-1 w-fit group"
+                  >
+                    {programs[3].cta.label}
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </AnimatedContent>
+              </div>
             </div>
           </div>
         </div>

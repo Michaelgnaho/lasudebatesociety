@@ -6,6 +6,7 @@ import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import { FaMicrophoneAlt, FaArrowRight, FaPlay } from "react-icons/fa";
 import { HiChevronDown } from "react-icons/hi";
 import Link from "next/link";
+import AnimatedContent from "@/components/AnimatedContent";
 
 const slides = [
   {
@@ -230,73 +231,113 @@ export default function Hero() {
         {/* Main copy — centred vertically */}
         <div className="section-shell flex flex-1 flex-col items-center justify-center py-16 sm:py-24 max-w-4xl">
           {/* Eyebrow */}
-          <div className="flex items-center gap-4 mb-8">
-            <span className="h-px w-10 bg-[var(--sky)]" />
-            <span className="font-mono text-[10px] sm:text-[11px] tracking-[0.4em] uppercase text-[var(--sky)]">
-              Est. 2018 · Multi-Award Winning
-            </span>
-          </div>
+          <AnimatedContent
+            distance={20}
+            duration={0.6}
+            ease="power3.out"
+            threshold={0.1}
+          >
+            <div className="flex items-center gap-4 mb-8">
+              <span className="h-px w-10 bg-[var(--sky)]" />
+              <span className="font-mono text-[10px] sm:text-[11px] tracking-[0.4em] uppercase text-[var(--sky)]">
+                Est. 2018 · Multi-Award Winning
+              </span>
+            </div>
+          </AnimatedContent>
 
           {/* Main heading */}
-          <h1
-            className="text-white leading-[1.0] tracking-[-0.02em]"
-            style={{ fontFamily: "var(--font-heading)" }}
+          <AnimatedContent
+            distance={40}
+            duration={0.8}
+            ease="power3.out"
+            delay={0.12}
+            threshold={0.1}
           >
-            <span className="block text-[clamp(2.6rem,8vw,5.5rem)] font-medium">
-              LASU Debate Society
-            </span>
-          </h1>
+            <h1
+              className="text-white leading-[1.0] tracking-[-0.02em]"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              <span className="block text-[clamp(2.6rem,8vw,5.5rem)] font-medium">
+                LASU Debate Society
+              </span>
+            </h1>
+          </AnimatedContent>
 
           {/* Subheading */}
-          <div className="mt-5 sm:mt-6 flex items-baseline gap-3">
-            <span
-              className="h-px w-8 shrink-0"
-              style={{ background: "var(--crimson)" }}
-            />
-            <p
-              className="italic text-[clamp(1.4rem,3.5vw,2.8rem)] font-medium leading-tight"
-              style={{
-                fontFamily: "var(--font-heading)",
-                background: "var(--grad-text)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              &ldquo;Valour in Speech&rdquo;
-            </p>
-          </div>
+          <AnimatedContent
+            distance={30}
+            duration={0.7}
+            ease="power3.out"
+            delay={0.26}
+            threshold={0.1}
+          >
+            <div className="mt-5 sm:mt-6 flex items-baseline gap-3">
+              <span
+                className="h-px w-8 shrink-0"
+                style={{ background: "var(--crimson)" }}
+              />
+              <p
+                className="italic text-[clamp(1.4rem,3.5vw,2.8rem)] font-medium leading-tight"
+                style={{
+                  fontFamily: "var(--font-heading)",
+                  background: "var(--grad-text)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                &ldquo;Valour in Speech&rdquo;
+              </p>
+            </div>
+          </AnimatedContent>
 
           {/* Body copy */}
-          <p className="mt-7 max-w-lg text-base sm:text-lg text-white/60 leading-relaxed">
-            Raising communicators, storytellers, debaters, and leaders who shape
-            conversations and transform communities at Lagos State University
-            and beyond.
-          </p>
+          <AnimatedContent
+            distance={30}
+            duration={0.7}
+            ease="power3.out"
+            delay={0.4}
+            threshold={0.1}
+          >
+            <p className="mt-7 max-w-lg text-base sm:text-lg text-white/60 leading-relaxed">
+              Raising communicators, storytellers, debaters, and leaders who
+              shape conversations and transform communities at Lagos State
+              University and beyond.
+            </p>
+          </AnimatedContent>
 
           {/* CTAs */}
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link
-              href="/contact"
-              className="group inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-sm font-semibold text-white"
-              style={{
-                background: "var(--crimson)",
-                boxShadow: "0 10px 32px -8px rgba(200,16,46,0.55)",
-              }}
-            >
-              Join LSUDS
-              <FaArrowRight className="h-3.5 w-3.5" />
-            </Link>
+          <AnimatedContent
+            distance={30}
+            duration={0.7}
+            ease="power3.out"
+            delay={0.55}
+            threshold={0.1}
+            scale={0.98}
+          >
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-sm font-semibold text-white"
+                style={{
+                  background: "var(--crimson)",
+                  boxShadow: "0 10px 32px -8px rgba(200,16,46,0.55)",
+                }}
+              >
+                Join LSUDS
+                <FaArrowRight className="h-3.5 w-3.5" />
+              </Link>
 
-            <Link
-              href="/listen"
-              className="inline-flex items-center gap-2.5 rounded-full border border-white/25 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm"
-              style={{ background: "rgba(255,255,255,0.07)" }}
-            >
-              <FaPlay className="h-3 w-3" />
-              Explore LISTEN
-            </Link>
-          </div>
+              <Link
+                href="/listen"
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/25 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm"
+                style={{ background: "rgba(255,255,255,0.07)" }}
+              >
+                <FaPlay className="h-3 w-3" />
+                Explore LISTEN
+              </Link>
+            </div>
+          </AnimatedContent>
         </div>
 
         {/* ─── BOTTOM STRIP ─────────────────────────────── */}

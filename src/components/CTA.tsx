@@ -1,3 +1,8 @@
+"use client";
+
+import AnimatedContent from "@/components/AnimatedContent";
+import Link from "next/link";
+
 export default function CTASection() {
   return (
     <section
@@ -17,72 +22,107 @@ export default function CTASection() {
       />
 
       <div className="relative">
-        <p
-          className="text-[0.68rem] font-bold tracking-[0.2em] uppercase mb-6"
-          style={{ color: "var(--sky-mid)", fontFamily: "var(--font-body)" }}
+        {/* Upper Tag Line */}
+        <AnimatedContent
+          distance={20}
+          duration={0.6}
+          ease="power3.out"
+          threshold={0.1}
         >
-          Your Journey Begins Here
-        </p>
+          <p
+            className="text-[0.68rem] font-bold tracking-[0.2em] uppercase mb-6"
+            style={{ color: "var(--sky-mid)", fontFamily: "var(--font-body)" }}
+          >
+            Your Journey Begins Here
+          </p>
+        </AnimatedContent>
 
-        <h2
-          className="mx-auto mb-4 leading-[1.05]"
-          style={{
-            fontFamily: "var(--font-heading)",
-            fontSize: "clamp(2.5rem, 7vw, 6rem)",
-            fontWeight: 300,
-            letterSpacing: "-0.03em",
-            color: "var(--navy-deep)",
-            maxWidth: "800px",
-          }}
+        {/* Main Header */}
+        <AnimatedContent
+          distance={35}
+          duration={0.8}
+          ease="power3.out"
+          delay={0.1}
+          threshold={0.1}
         >
-          Your voice has power.
-          <br />
-          <em
+          <h2
+            className="mx-auto mb-4 leading-[1.05]"
             style={{
-              background: "var(--grad-text)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              fontFamily: "var(--font-heading)",
+              fontSize: "clamp(2.5rem, 7vw, 6rem)",
+              fontWeight: 300,
+              letterSpacing: "-0.03em",
+              color: "var(--navy-deep)",
+              maxWidth: "800px",
             }}
           >
-            Learn to use it.
-          </em>
-        </h2>
+            Your voice has power.
+            <br />
+            <em
+              style={{
+                background: "var(--grad-text)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Learn to use it.
+            </em>
+          </h2>
+        </AnimatedContent>
 
-        <p
-          className="text-[1rem] mb-12"
-          style={{
-            color: "var(--text-muted, #5a5a6a)",
-            fontFamily: "var(--font-body)",
-          }}
+        {/* Supporting Copy */}
+        <AnimatedContent
+          distance={25}
+          duration={0.7}
+          ease="power3.out"
+          delay={0.2}
+          threshold={0.1}
         >
-          Join a society that has been transforming students into communicators,
-          thinkers, and leaders since 2018.
-        </p>
-
-        <div className="flex flex-wrap gap-4 justify-center">
-          <a
-            href="#"
-            className="inline-block px-8 py-3.5 rounded text-sm font-semibold tracking-wide text-white no-underline"
+          <p
+            className="text-[1rem] mb-12"
             style={{
-              background: "var(--crimson)",
+              color: "var(--text-muted, #5a5a6a)",
               fontFamily: "var(--font-body)",
             }}
           >
-            Join The Society
-          </a>
-          <a
-            href="#"
-            className="inline-block px-8 py-3.5 rounded text-sm font-semibold tracking-wide no-underline border-[1.5px]"
-            style={{
-              color: "var(--navy)",
-              borderColor: "var(--navy)",
-              fontFamily: "var(--font-body)",
-            }}
-          >
-            Contact Us
-          </a>
-        </div>
+            Join a society that has been transforming students into
+            communicators, thinkers, and leaders since 2018.
+          </p>
+        </AnimatedContent>
+
+        {/* Action Button Group */}
+        <AnimatedContent
+          distance={20}
+          duration={0.6}
+          ease="power3.out"
+          delay={0.3}
+          threshold={0.15}
+        >
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link
+              href="/contact"
+              className="inline-block px-8 py-3.5 rounded text-sm font-semibold tracking-wide text-white no-underline"
+              style={{
+                background: "var(--crimson)",
+                fontFamily: "var(--font-body)",
+              }}
+            >
+              Join The Society
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-block px-8 py-3.5 rounded text-sm font-semibold tracking-wide no-underline border-[1.5px]"
+              style={{
+                color: "var(--navy)",
+                borderColor: "var(--navy)",
+                fontFamily: "var(--font-body)",
+              }}
+            >
+              Contact Us
+            </Link>
+          </div>
+        </AnimatedContent>
       </div>
     </section>
   );
