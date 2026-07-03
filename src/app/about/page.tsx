@@ -35,6 +35,12 @@ interface Administration {
   isCurrent?: boolean;
 }
 
+interface HistoricalFigure {
+  name: string;
+  role: string;
+  image: string;
+}
+
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const milestones = [
@@ -108,6 +114,52 @@ const coreValues = [
     icon: BookOpen,
     title: "Continuous Learning",
     copy: "Through its events, training sessions, and publications, the society champions lifelong learning and the continuous refinement of voice and skill.",
+  },
+];
+
+// Historical figures — replace images/roles as needed. Using existing image paths from the founding data.
+const historicalFigures: HistoricalFigure[] = [
+  {
+    name: "Moyosoreoluwa Eleso",
+    role: "Founder & 1st President",
+    image: "/images/Eleso-Moyosoreoluwa.webp",
+  },
+  {
+    name: "Hezekiah Tiamiyu",
+    role: "Co-Founder & 2nd President",
+    image: "/images/Hezekiah-Tiamiyu.webp",
+  },
+];
+
+// TODO: Replace with the full narrative — this is a placeholder based on what was provided.
+const historicalPoints = [
+  "LSUDS was officially registered in 2018 under the leadership of Moyosoreoluwa Eleso, together with Hezekiah Tiamiyu, Faith Uzuegbu, Ademola Ibrahim, and Timi Ojo.",
+  "The founding team held the first inter-faculty debate, an event that would go on to become the society's flagship Word War competition.",
+  "In 2019, Hezekiah Tiamiyu and his team founded LISTEN — now recognised as Africa's biggest storytelling platform. [Add more detail here.]",
+];
+
+// Alumni body — replace with full list of names.
+const alumniHead = "Hezekiah Tiamiyu";
+const alumniMembers = [
+  "Alumni Name 1",
+  "Alumni Name 2",
+  "Alumni Name 3",
+  "Alumni Name 4",
+  "Alumni Name 5",
+  "Alumni Name 6",
+];
+
+// LSUDS & LASU — replace names/images with the actual VC and staff adviser.
+const lasuLeadership = [
+  {
+    name: "Vice Chancellor Name",
+    role: "Vice Chancellor, Lagos State University",
+    image: "/images/placeholder.webp",
+  },
+  {
+    name: "Staff Adviser Name",
+    role: "Staff Adviser, LSUDS",
+    image: "/images/placeholder.webp",
   },
 ];
 
@@ -622,7 +674,10 @@ export default function About() {
 
       reveal(".milestone-item", { stagger: 0.12 });
       reveal(".value-card", { stagger: 0.1 });
-      reveal(".member-row", { stagger: 0.045, duration: 0.5 });
+      reveal(".historical-card", { stagger: 0.1 });
+      reveal(".historical-point", { stagger: 0.1 });
+      reveal(".alumni-row", { stagger: 0.045, duration: 0.5 });
+      reveal(".lasu-card", { stagger: 0.12 });
       reveal(".admin-row", { stagger: 0.08 });
 
       // Timeline progress line draws in as the section scrolls past
@@ -1003,70 +1058,68 @@ export default function About() {
         </div>
       </section>
 
-      {/* ── Founding Members ─────────────────────────────────────────────── */}
+      {/* ── Historical Points ────────────────────────────────────────────── */}
       <section className="py-24 sm:py-28 border-b border-[var(--line)]">
         <div className="section-shell">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
-            <AnimatedContent
-              distance={30}
-              duration={0.7}
-              ease="power3.out"
-              threshold={0.15}
-            >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[var(--navy)] max-w-xl">
-                The fourteen who{" "}
-                <span className="italic gradient-text">started it all.</span>
-              </h2>
-            </AnimatedContent>
-            <AnimatedContent
-              distance={20}
-              duration={0.6}
-              ease="power3.out"
-              delay={0.15}
-              threshold={0.15}
-            >
-              <p className="text-[var(--ink)]/60 max-w-sm">
-                In 2018, these individuals came together to build what would
-                become the most impactful public speaking society at LASU.
-              </p>
-            </AnimatedContent>
-          </div>
-
-          <div
-            className="border divide-y divide-[var(--line)]"
-            style={{ borderColor: "var(--line)" }}
-          >
-            {[
-              "Eleso Moyosoreoluwa",
-              "Atanda Rafiat",
-              "Tiamiyu Hezekiah",
-              "Fadare Kehinde",
-              "Omolaja Olayemi",
-              "Onagoruwa Ayodeji",
-              "Uzuegbu Faith",
-              "Ademola Ibrahim",
-              "Ibrahim Owolabi",
-              "Akinsiwaju Sanya",
-              "Ajayi Oladipupo",
-              "Awesu Olaniyi",
-              "Timilehin Ojo",
-              "Tobi Babalola",
-            ].map((name, i) => (
-              <div
-                key={name}
-                className="member-row opacity-0 -translate-x-4 flex items-center gap-6 bg-white px-8 py-5"
+          <div className="flex flex-col lg:flex-row lg:gap-20">
+            {/* Left — narrative */}
+            <div className="lg:w-6/12 shrink-0">
+              <AnimatedContent
+                distance={30}
+                duration={0.7}
+                ease="power3.out"
+                threshold={0.15}
               >
-                <span className="text-xs font-mono text-[var(--ink)]/30 w-5 shrink-0">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="text-[var(--navy)] font-medium">{name}</span>
-                {i === 0 && (
-                  <span className="ml-auto text-xs font-semibold uppercase tracking-widest text-[var(--crimson)] border border-[var(--crimson)]/30 px-3 py-1">
-                    1st President
-                  </span>
-                )}
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--crimson)]">
+                  Key historical points
+                </p>
+                <h2 className="mt-4 text-3xl sm:text-4xl font-medium text-[var(--navy)] leading-snug">
+                  The record{" "}
+                  <span className="italic gradient-text">so far.</span>
+                </h2>
+              </AnimatedContent>
+
+              <div className="mt-8 space-y-5">
+                {historicalPoints.map((point, i) => (
+                  <p
+                    key={i}
+                    className="historical-point opacity-0 translate-y-4 text-[var(--ink)]/65 leading-relaxed"
+                  >
+                    {point}
+                  </p>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Right — historical figures */}
+            <div className="mt-14 lg:mt-0 lg:flex-1">
+              <div className="grid grid-cols-2 gap-6 max-w-md">
+                {historicalFigures.map((figure) => (
+                  <div
+                    key={figure.name}
+                    className="historical-card opacity-0 translate-y-6 flex flex-col items-center text-center gap-3"
+                  >
+                    <div className="relative w-full aspect-square overflow-hidden bg-[var(--navy)]/5 border-2 border-[var(--crimson)]/40">
+                      <Image
+                        src={figure.image}
+                        alt={`Portrait of ${figure.name}`}
+                        fill
+                        sizes="(max-width: 640px) 45vw, 20vw"
+                        className="object-cover object-top"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-[var(--navy)] leading-snug">
+                        {figure.name}
+                      </p>
+                      <p className="mt-0.5 text-[10px] uppercase tracking-wider text-[var(--crimson)] font-semibold">
+                        {figure.role}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1182,6 +1235,122 @@ export default function About() {
                   </div>
                 </div>
               </details>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* ── Alumni Body ──────────────────────────────────────────────────── */}
+      <section className="py-24 sm:py-28 border-b border-[var(--line)]">
+        <div className="section-shell">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
+            <AnimatedContent
+              distance={30}
+              duration={0.7}
+              ease="power3.out"
+              threshold={0.15}
+            >
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[var(--navy)] max-w-xl">
+                The <span className="italic gradient-text">alumni body.</span>
+              </h2>
+            </AnimatedContent>
+            <AnimatedContent
+              distance={20}
+              duration={0.6}
+              ease="power3.out"
+              delay={0.15}
+              threshold={0.15}
+            >
+              <p className="text-[var(--ink)]/60 max-w-sm">
+                Former members who continue to champion LSUDS's mission long
+                after graduation.
+              </p>
+            </AnimatedContent>
+          </div>
+
+          <div
+            className="border divide-y divide-[var(--line)]"
+            style={{ borderColor: "var(--line)" }}
+          >
+            {/* Head of alumni body */}
+            <div className="alumni-row opacity-0 -translate-x-4 flex items-center gap-6 bg-white px-8 py-5">
+              <span className="text-xs font-mono text-[var(--ink)]/30 w-5 shrink-0">
+                01
+              </span>
+              <span className="text-[var(--navy)] font-medium">
+                {alumniHead}
+              </span>
+              <span className="ml-auto text-xs font-semibold uppercase tracking-widest text-[var(--crimson)] border border-[var(--crimson)]/30 px-3 py-1">
+                Head, Alumni Body
+              </span>
+            </div>
+
+            {/* Other alumni — names only */}
+            {alumniMembers.map((name, i) => (
+              <div
+                key={name}
+                className="alumni-row opacity-0 -translate-x-4 flex items-center gap-6 bg-white px-8 py-5"
+              >
+                <span className="text-xs font-mono text-[var(--ink)]/30 w-5 shrink-0">
+                  {String(i + 2).padStart(2, "0")}
+                </span>
+                <span className="text-[var(--navy)] font-medium">{name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 sm:py-28 border-b border-[var(--line)]">
+        <div className="section-shell">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
+            <AnimatedContent
+              distance={30}
+              duration={0.7}
+              ease="power3.out"
+              threshold={0.15}
+            >
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[var(--navy)] max-w-xl">
+                LSUDS & <span className="italic gradient-text">LASU.</span>
+              </h2>
+            </AnimatedContent>
+            <AnimatedContent
+              distance={20}
+              duration={0.6}
+              ease="power3.out"
+              delay={0.15}
+              threshold={0.15}
+            >
+              <p className="text-[var(--ink)]/60 max-w-sm">
+                LSUDS operates under the guidance and support of the
+                university's leadership.
+              </p>
+            </AnimatedContent>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-2xl">
+            {lasuLeadership.map((person) => (
+              <div
+                key={person.name}
+                className="lasu-card opacity-0 translate-y-6 flex flex-col items-center text-center gap-4"
+              >
+                <div className="relative w-full aspect-square overflow-hidden bg-[var(--navy)]/5 border border-[var(--line)]">
+                  <Image
+                    src={person.image}
+                    alt={`Photo of ${person.name}`}
+                    fill
+                    sizes="(max-width: 640px) 90vw, 40vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div>
+                  <p className="text-base font-semibold text-[var(--navy)] leading-snug">
+                    {person.name}
+                  </p>
+                  <p className="mt-0.5 text-xs uppercase tracking-wider text-[var(--crimson)]/80 font-medium">
+                    {person.role}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
         </div>

@@ -99,7 +99,7 @@ export default function AboutPreview() {
                 style={{ borderColor: "var(--line)" }}
               >
                 <Image
-                  src="/images/Hezekiah-Tiamiyu.webp"
+                  src="/images/about-hero.jpg"
                   alt="LSUDS member"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
