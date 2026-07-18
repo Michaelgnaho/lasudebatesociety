@@ -102,7 +102,7 @@ export default function Navbar() {
           {/* ── RIGHT: CTA + HAMBURGER ── */}
           <div className="flex items-center gap-3">
             <Link
-              href="/join-us"
+              href="/contact"
               className="hidden sm:inline-flex items-center gap-2 no-underline rounded-full text-white text-sm font-semibold"
               style={{
                 fontFamily: "var(--font-body)",

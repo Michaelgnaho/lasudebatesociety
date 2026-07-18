@@ -1,81 +1,162 @@
-import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
-// NOTE: Entries marked verified=true are sourced from public news coverage.
-// Entries marked verified=false are placeholders — replace with real names
-// and image paths. Image paths follow:
-//   /achievements/{slug}/winner-1.jpg, winner-2.jpg, etc.
+// Each row is one person, one competition, one year. A person with more than
+// one win across different years or competitions gets more than one row.
 
-const achievements = [
+type Win = {
+  name: string;
+  competition: string;
+  year: number;
+};
+
+const wins: Win[] = [
+  // 2026
   {
-    slug: "lasepa-2026",
-    year: "2026",
+    name: "Fajana Olamide Mary",
     competition:
-      "LASEPA Inter-Tertiary Institutions Environmental Debate Competition",
-    winners: [{ name: "Fajana Olamide Mary" }],
-    verified: true,
+      "LASEPA Inter Tertiary Institutions Environmental Debate Competition",
+    year: 2026,
   },
   {
-    slug: "lasepa-2025",
-    year: "2025",
-    competition: "LASEPA Inter-Tertiary Institutions Debate Competition",
-    winners: [
-      { name: "Oladipupo Ramadan" },
-      { name: "Atere Sarah Olateju" },
-      { name: "Ajeniya Abdulquadri" },
-      { name: "Kelvin Chukwuemeke Osadebe" },
-      { name: "Sulaiman Samad Olaitan" },
-    ],
-    verified: true,
+    name: "Maryam Motunrayo Lawal",
+    competition: "MSSN Lagos Intellectual Competition",
+    year: 2026,
   },
   {
-    slug: "umezulike-2024",
-    year: "2024",
+    name: "Michael Favour Eneoche",
+    competition: "NASELS Interchapter Debate for Lagos State",
+    year: 2026,
+  },
+  {
+    name: "Onafusi Oluwafikunayomi Esther",
+    competition: "Global Dialogue Intervarsity Debate Competition",
+    year: 2026,
+  },
+  {
+    name: "Hamzat Kamilat Omotolani",
+    competition: "Peace Summit 3.0 and MSSN Lagos Intellectual Competition",
+    year: 2026,
+  },
+  {
+    name: "Arowojobe Emmanuel",
+    competition: "1st Runner Up, Peace Summit 3.0 Speech Contest",
+    year: 2026,
+  },
+  {
+    name: "Mariam Oluwapelumi Busari",
+    competition:
+      "Best Diplomat and Critical Thinker, Presentation Award (Simulation)",
+    year: 2026,
+  },
+
+  // 2025
+  {
+    name: "Oladipupo Ramadan",
+    competition: "LASEPA Inter Tertiary Institutions Debate Competition",
+    year: 2025,
+  },
+  {
+    name: "Atere Sarah Olateju",
+    competition: "LASEPA Inter Tertiary Institutions Debate Competition",
+    year: 2025,
+  },
+  {
+    name: "Ajeniya Abdulquadri",
+    competition: "LASEPA Inter Tertiary Institutions Debate Competition",
+    year: 2025,
+  },
+  {
+    name: "Kelvin Chukwuemeke Osadebe",
+    competition: "LASEPA Inter Tertiary Institutions Debate Competition",
+    year: 2025,
+  },
+  {
+    name: "Sulaiman Samad Olaitan",
+    competition: "LASEPA Inter Tertiary Institutions Debate Competition",
+    year: 2025,
+  },
+  {
+    name: "Adebowale Gbenga Ayowale",
+    competition: "Lagos State Baptist Student Fellowship Oratory Contest",
+    year: 2025,
+  },
+  {
+    name: "Arowojobe Emmanuel",
+    competition: "Winner, NAFIS LASU Debate Competition",
+    year: 2025,
+  },
+  {
+    name: "Mariam Oluwapelumi Busari",
+    competition:
+      "Best Diplomat and Critical Thinker, Presentation Award (Simulation)",
+    year: 2025,
+  },
+  {
+    name: "Bello Oluwanifemi Onoara",
+    competition: "Massa Lasu Verbal Duel (Massa Lasu Word Lord)",
+    year: 2025,
+  },
+  {
+    name: "Bello Oluwanifemi Onoara",
+    competition: "Accounting and Business Conduct Debate 6.0, Best Speaker",
+    year: 2025,
+  },
+
+  // 2024
+  {
+    name: "Oladipupo Olalekan",
     competition: "Justice Innocent Umezulike National Debate Competition",
-    winners: [
-      { name: "Oladipupo Olalekan" },
-      { name: "Ajeniya Oluwagbemiga" },
-      { name: "Musendiku Mulikat" },
-    ],
-    verified: true,
+    year: 2024,
   },
   {
-    slug: "placeholder-1",
-    year: "20XX",
-    competition: "Competition Name",
-    winners: [{ name: "Winner Name" }, { name: "Winner Name" }],
-    verified: false,
+    name: "Ajeniya Oluwagbemiga",
+    competition: "Justice Innocent Umezulike National Debate Competition",
+    year: 2024,
   },
   {
-    slug: "placeholder-2",
-    year: "20XX",
-    competition: "Competition Name",
-    winners: [{ name: "Winner Name" }],
-    verified: false,
+    name: "Musendiku Mulikat",
+    competition: "Justice Innocent Umezulike National Debate Competition",
+    year: 2024,
+  },
+  {
+    name: "Sulaiman Samad Olaitan",
+    competition: "QHSE and Sustainability Debate Series 2.0",
+    year: 2024,
+  },
+  {
+    name: "Arowojobe Emmanuel",
+    competition: "Winner, NAFIS LASU Debate Competition",
+    year: 2024,
+  },
+
+  // 2023
+  {
+    name: "Arowojobe Emmanuel",
+    competition: "Winner, NASS LASU Freshers Debate",
+    year: 2023,
   },
 ];
+
+const years = Array.from(new Set(wins.map((w) => w.year))).sort(
+  (a, b) => b - a,
+);
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function Achievements() {
+  const [openYear, setOpenYear] = useState<number | null>(years[0] ?? null);
+
   return (
     <main>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-[60vh] flex items-end">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/achievements/hero-trophy.jpg"
-            alt="LSUDS members celebrating a competition win"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)] via-[var(--navy)]/60 to-[var(--navy)]/20" />
-        </div>
+      <section className="relative min-h-[45vh] flex items-end">
+        <div className="absolute inset-0 z-0 bg-[var(--navy)]" />
 
-        <div className="relative z-10 w-full section-shell pb-20 pt-32">
+        <div className="relative z-10 w-full section-shell pb-16 pt-32">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--sky)]">
             Beyond LASU
           </p>
@@ -83,56 +164,68 @@ export default function Achievements() {
             Achievements
           </h1>
           <p className="mt-4 text-lg sm:text-xl text-white/70 max-w-lg leading-relaxed">
-            Competitions won outside LSUDS — and the speakers who won them.
+            Competitions won outside LSUDS, organised by year.
           </p>
         </div>
       </section>
 
-      {/* ── Achievements grid ────────────────────────────────────────────── */}
+      {/* ── Year accordion ───────────────────────────────────────────────── */}
       <section className="py-24 sm:py-28">
-        <div className="section-shell">
-          <div className="flex flex-col gap-16">
-            {achievements.map((ach) => (
-              <div key={ach.slug}>
-                {/* Competition header */}
-                <div className="flex items-baseline gap-4 mb-7 pb-4 border-b border-[var(--line)]">
-                  <span className="text-2xl sm:text-3xl font-semibold text-[var(--crimson)] shrink-0">
-                    {ach.year}
-                  </span>
-                  <h2 className="text-lg sm:text-xl font-medium text-[var(--navy)] leading-snug">
-                    {ach.competition}
-                  </h2>
-                  {!ach.verified && (
-                    <span className="ml-auto shrink-0 text-[10px] font-semibold uppercase tracking-widest text-[var(--ink)]/30 border border-[var(--line)] px-2 py-1">
-                      Placeholder
-                    </span>
-                  )}
-                </div>
+        <div className="section-shell max-w-3xl">
+          <div className="flex flex-col border-t border-[var(--line)]">
+            {years.map((year) => {
+              const yearWins = wins.filter((w) => w.year === year);
+              const isOpen = openYear === year;
 
-                {/* Winner cards */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
-                  {ach.winners.map((w, i) => (
-                    <div
-                      key={`${ach.slug}-${i}`}
-                      className="flex flex-col items-center text-center gap-3"
-                    >
-                      <div className="relative w-full aspect-square overflow-hidden bg-[var(--navy)]/5 border border-[var(--line)]">
-                        <Image
-                          src={`/achievements/${ach.slug}/winner-${i + 1}.jpg`}
-                          alt={w.name}
-                          fill
-                          sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 18vw"
-                          className="object-cover object-top"
-                        />
-                      </div>
-                      <p className="text-xs font-semibold text-[var(--navy)] leading-snug">
-                        {w.name}
-                      </p>
+              return (
+                <div key={year} className="border-b border-[var(--line)]">
+                  <button
+                    onClick={() => setOpenYear(isOpen ? null : year)}
+                    className="w-full flex items-center justify-between gap-4 py-6 text-left"
+                    aria-expanded={isOpen}
+                  >
+                    <span className="flex items-baseline gap-3">
+                      <span className="text-3xl sm:text-4xl font-semibold text-[var(--crimson)]">
+                        {year}
+                      </span>
+                      <span className="text-sm text-[var(--ink)]/50">
+                        {yearWins.length}{" "}
+                        {yearWins.length === 1 ? "win" : "wins"}
+                      </span>
+                    </span>
+                    <ChevronDown
+                      className={`h-5 w-5 text-[var(--navy)] shrink-0 transition-transform duration-300 ${
+                        isOpen ? "rotate-180" : ""
+                      }`}
+                      strokeWidth={2}
+                    />
+                  </button>
+
+                  <div
+                    className={`grid transition-all duration-300 ease-in-out ${
+                      isOpen
+                        ? "grid-rows-[1fr] opacity-100"
+                        : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <ul className="pb-8 flex flex-col gap-5">
+                        {yearWins.map((w, i) => (
+                          <li key={`${year}-${i}`}>
+                            <p className="text-sm font-semibold text-[var(--navy)]">
+                              {w.name}
+                            </p>
+                            <p className="text-sm text-[var(--ink)]/60 mt-0.5">
+                              {w.competition}
+                            </p>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                  ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

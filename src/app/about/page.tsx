@@ -41,17 +41,28 @@ interface HistoricalFigure {
   image: string;
 }
 
+interface AlumniYear {
+  year: string;
+  members: string[];
+}
+
+interface Adviser {
+  name: string;
+  role: string;
+  image: string;
+}
+
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const milestones = [
   {
     year: "2018",
-    event: "Society founded at LASU Ojo by fourteen pioneering members.",
+    event: "Society founded at LASU Ojo by five pioneering members.",
   },
   {
     year: "2019",
     event:
-      "LISTEN Edition I (SEED) launches — the event that would become Africa's biggest storytelling platform.",
+      "LISTEN Edition I (SEED) launches — the event that would become Nigeria's biggest storytelling platform.",
   },
   {
     year: "2021",
@@ -117,49 +128,87 @@ const coreValues = [
   },
 ];
 
-// Historical figures — replace images/roles as needed. Using existing image paths from the founding data.
+// Historical figures — replace images as needed.
 const historicalFigures: HistoricalFigure[] = [
   {
     name: "Moyosoreoluwa Eleso",
-    role: "Founder & 1st President",
+    role: "1st President",
     image: "/images/Eleso-Moyosoreoluwa.webp",
   },
   {
     name: "Hezekiah Tiamiyu",
-    role: "Co-Founder & 2nd President",
+    role: "Founder of LISTEN & 2nd President",
     image: "/images/Hezekiah-Tiamiyu.webp",
   },
 ];
 
-// TODO: Replace with the full narrative — this is a placeholder based on what was provided.
 const historicalPoints = [
-  "LSUDS was officially registered in 2018 under the leadership of Moyosoreoluwa Eleso, together with Hezekiah Tiamiyu, Faith Uzuegbu, Ademola Ibrahim, and Timi Ojo.",
-  "The founding team held the first inter-faculty debate, an event that would go on to become the society's flagship Word War competition.",
-  "In 2019, Hezekiah Tiamiyu and his team founded LISTEN — now recognised as Africa's biggest storytelling platform. [Add more detail here.]",
+  "LSUDS was officially registered in 2018 under the leadership of Moyosoreoluwa Eleso, together with Hezekiah Tiamiyu, Faith Uzuegbu, Ademola Ibraheem Lawal, and Timi Ojo — five pioneering members who laid the society's foundation.",
+  "In 2019, Hezekiah Tiamiyu founded LISTEN, which drew over 2,000 attendees and grew into one of Nigeria's biggest storytelling platforms. It was during this tenure that LSUDS publicly opened its gates to all of LASU, and the society has since continued to grow every year through its Call for Applications.",
+  "In the years that followed, LSUDS recorded victories at several competitions and watched many rising stars emerge — top poet Victory Ashaka, hijabi compere Zainab Aderounmu, spoken word artiste Aina Ayomide, and many more.",
+  "The history is still being written. If we were to write all the deeds of Moyosoreoluwa, of Hezekiah, of Femi, of Dunni, of Titi, of Bolu who launched the Orators Retreat, of Seide, of Ayomide, and those to follow, there would not be enough space to tell it all.",
 ];
 
-// Alumni body — replace with full list of names.
+// Alumni body — head sits above; other alumni are grouped by graduating/exit year.
+// TODO: Replace placeholder names below with the real alumni list for each year,
+// and add further years (2026/2027 Alumni, etc.) following the same pattern.
 const alumniHead = "Hezekiah Tiamiyu";
-const alumniMembers = [
-  "Alumni Name 1",
-  "Alumni Name 2",
-  "Alumni Name 3",
-  "Alumni Name 4",
-  "Alumni Name 5",
-  "Alumni Name 6",
-];
-
-// LSUDS & LASU — replace names/images with the actual VC and staff adviser.
-const lasuLeadership = [
+const alumniYears: AlumniYear[] = [
   {
-    name: "Vice Chancellor Name",
-    role: "Vice Chancellor, Lagos State University",
-    image: "/images/placeholder.webp",
+    year: "2019/2020 Alumni",
+    members: ["Alumni Name 1", "Alumni Name 2", "Alumni Name 3"],
   },
   {
-    name: "Staff Adviser Name",
+    year: "2020/2021 Alumni",
+    members: ["Alumni Name 1", "Alumni Name 2", "Alumni Name 3"],
+  },
+  {
+    year: "2021/2022 Alumni",
+    members: ["Alumni Name 1", "Alumni Name 2", "Alumni Name 3"],
+  },
+  {
+    year: "2022/2023 Alumni",
+    members: ["Alumni Name 1", "Alumni Name 2", "Alumni Name 3"],
+  },
+  {
+    year: "2023/2024 Alumni",
+    members: ["Alumni Name 1", "Alumni Name 2", "Alumni Name 3"],
+  },
+  {
+    year: "2024/2025 Alumni",
+    members: ["Alumni Name 1", "Alumni Name 2", "Alumni Name 3"],
+  },
+  {
+    year: "2025/2026 Alumni",
+    members: ["Alumni Name 1", "Alumni Name 2", "Alumni Name 3"],
+  },
+];
+const viceChancellor = {
+  name: "Prof. Ibiyemi Olatunji-Bello",
+  role: "Vice Chancellor, Lagos State University",
+  image: "/images/Prof.-Ibiyemi.webp",
+};
+// LSUDS Staff Advisers
+const staffAdvisers: Adviser[] = [
+  {
+    name: "Dr. Genius Abisoye Bamgbose",
     role: "Staff Adviser, LSUDS",
-    image: "/images/placeholder.webp",
+    image: "/images/GAB.jpg",
+  },
+  {
+    name: "Mr. JerrySam Adeniyi",
+    role: "Staff Adviser, LSUDS",
+    image: "/images/JerrySam.jpg",
+  },
+  {
+    name: "Mr. Ademola Adekoya",
+    role: "Staff Adviser, LSUDS",
+    image: "/images/Ademola.jpg",
+  },
+  {
+    name: "Mrs. Agosu-Lewis Olubunmi",
+    role: "Staff Adviser, LSUDS",
+    image: "/images/Olubunmi..jpg",
   },
 ];
 
@@ -168,7 +217,7 @@ const administrations: Administration[] = [
     term: "1st Administration · 2018",
     president: "Moyosoreoluwa Eleso",
     presidentImage: "/images/Eleso-Moyosoreoluwa.webp",
-    note: "Founder and first President. One of fourteen who laid the foundation of LSUDS, setting the tone for excellence that every administration has built upon.",
+    note: "First President. One of five pioneering members who laid the foundation of LSUDS, setting the tone for excellence that every administration has built upon.",
     executives: [
       {
         name: "Hezekiah Tiamiyu",
@@ -181,7 +230,7 @@ const administrations: Administration[] = [
         image: "/images/Faith Uzuegbu.webp",
       },
       {
-        name: "Ademola Ibrahim",
+        name: "Ademola Ibraheem Lawal",
         role: "PR Expert",
         image: "/images/Ademola-Ibrahim.webp",
       },
@@ -254,7 +303,7 @@ const administrations: Administration[] = [
       {
         name: "Fatima Abu",
         role: "Asst. Gen. Secretary",
-        image: "/images/Fatima-Abu.webp",
+        image: "/images/ladyP.png",
       },
       {
         name: "Folayemi Sanusi",
@@ -363,7 +412,7 @@ const administrations: Administration[] = [
     term: "6th Administration · 2023–2024",
     president: "Boluwatife Kolawole",
     presidentImage: "/images/Boluwatife-Kolawole.webp",
-    note: "An adept compere, actor, writer and public speaker, Bolu coached emerging speakers and presided over LISTEN V (RESILIENCE), widely regarded as an outstanding edition.",
+    note: "An adept compere, actor, writer and public speaker, Bolu coached emerging speakers, launched the Orators Retreat, and presided over LISTEN V (RESILIENCE), widely regarded as an outstanding edition.",
     executives: [
       {
         name: "Fathia Adetola",
@@ -474,7 +523,7 @@ const administrations: Administration[] = [
       {
         name: "Adewumi Osonoiki",
         role: "Welfare Director",
-        image: "/images/placeholder.webp",
+        image: "/images/ladyP.png",
       },
       {
         name: "Asikaburu Miracle",
@@ -676,8 +725,9 @@ export default function About() {
       reveal(".value-card", { stagger: 0.1 });
       reveal(".historical-card", { stagger: 0.1 });
       reveal(".historical-point", { stagger: 0.1 });
-      reveal(".alumni-row", { stagger: 0.045, duration: 0.5 });
-      reveal(".lasu-card", { stagger: 0.12 });
+      reveal(".alumni-head-row", { stagger: 0.045, duration: 0.5 });
+      reveal(".alumni-year-row", { stagger: 0.06 });
+      reveal(".adviser-card", { stagger: 0.12 });
       reveal(".admin-row", { stagger: 0.08 });
 
       // Timeline progress line draws in as the section scrolls past
@@ -708,7 +758,9 @@ export default function About() {
     const cleanupFns = detailsEls.map((el) => {
       const onToggle = () => {
         if (!el.open) return;
-        const cards = el.querySelectorAll<HTMLElement>(".exec-card");
+        const cards = el.querySelectorAll<HTMLElement>(
+          ".exec-card, .alumni-member",
+        );
         gsap.fromTo(
           cards,
           { opacity: 0, y: 14, scale: 0.96 },
@@ -830,7 +882,7 @@ export default function About() {
                 threshold={0.15}
               >
                 <p className="mt-6 text-[var(--ink)]/65 leading-relaxed">
-                  In 2018, fourteen students at Lagos State University, Ojo,
+                  In 2018, five students at Lagos State University, Ojo,
                   gathered with a shared conviction: that excellence in
                   communication is inseparable from excellence in leadership.
                   From that belief, they built the Lagos State University Debate
@@ -1239,6 +1291,7 @@ export default function About() {
           </div>
         </div>
       </section>
+
       {/* ── Alumni Body ──────────────────────────────────────────────────── */}
       <section className="py-24 sm:py-28 border-b border-[var(--line)]">
         <div className="section-shell">
@@ -1262,44 +1315,77 @@ export default function About() {
             >
               <p className="text-[var(--ink)]/60 max-w-sm">
                 Former members who continue to champion LSUDS's mission long
-                after graduation.
+                after graduation, organised by the year they joined the alumni
+                body.
               </p>
             </AnimatedContent>
           </div>
 
+          {/* Head of alumni body — standalone box up top */}
           <div
-            className="border divide-y divide-[var(--line)]"
+            className="alumni-head-row opacity-0 -translate-x-4 flex items-center gap-6 bg-white border px-8 py-6 mb-6"
             style={{ borderColor: "var(--line)" }}
           >
-            {/* Head of alumni body */}
-            <div className="alumni-row opacity-0 -translate-x-4 flex items-center gap-6 bg-white px-8 py-5">
-              <span className="text-xs font-mono text-[var(--ink)]/30 w-5 shrink-0">
-                01
-              </span>
-              <span className="text-[var(--navy)] font-medium">
-                {alumniHead}
-              </span>
-              <span className="ml-auto text-xs font-semibold uppercase tracking-widest text-[var(--crimson)] border border-[var(--crimson)]/30 px-3 py-1">
-                Head, Alumni Body
-              </span>
-            </div>
+            <Users
+              className="h-6 w-6 text-[var(--crimson)] shrink-0"
+              strokeWidth={1.5}
+            />
+            <span className="text-lg font-medium text-[var(--navy)]">
+              {alumniHead}
+            </span>
+            <span className="ml-auto text-xs font-semibold uppercase tracking-widest text-[var(--crimson)] border border-[var(--crimson)]/30 px-3 py-1">
+              Head, Alumni Body
+            </span>
+          </div>
 
-            {/* Other alumni — names only */}
-            {alumniMembers.map((name, i) => (
-              <div
-                key={name}
-                className="alumni-row opacity-0 -translate-x-4 flex items-center gap-6 bg-white px-8 py-5"
+          {/* Alumni by year — each year is its own dropdown box */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {alumniYears.map((cohort) => (
+              <details
+                key={cohort.year}
+                className="alumni-year-row opacity-0 translate-y-6 group bg-white border open:border-[var(--crimson)]/30 open:bg-[var(--navy)]/[0.02] transition-colors"
+                style={{ borderColor: "var(--line)" }}
               >
-                <span className="text-xs font-mono text-[var(--ink)]/30 w-5 shrink-0">
-                  {String(i + 2).padStart(2, "0")}
-                </span>
-                <span className="text-[var(--navy)] font-medium">{name}</span>
-              </div>
+                <summary className="flex cursor-pointer items-center justify-between gap-4 px-6 py-5 list-none">
+                  <span className="text-sm font-semibold text-[var(--navy)]">
+                    {cohort.year}
+                  </span>
+                  <div className="flex items-center justify-center h-7 w-7 rounded-full border border-[var(--line)] group-open:border-[var(--crimson)]/30 group-open:bg-[var(--crimson)]/5 transition-colors shrink-0">
+                    <svg
+                      className="h-3 w-3 text-[var(--ink)]/35 group-open:text-[var(--crimson)] transition-transform group-open:rotate-180"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
+                </summary>
+
+                <div className="px-6 pb-5 pt-1 border-t border-[var(--line)]">
+                  <ul className="mt-4 space-y-2">
+                    {cohort.members.map((name) => (
+                      <li
+                        key={name}
+                        className="alumni-member text-sm text-[var(--ink)]/70"
+                      >
+                        {name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </details>
             ))}
           </div>
         </div>
       </section>
 
+      {/* ── LSUDS & LASU ─────────────────────────────────────────────────── */}
       <section className="py-24 sm:py-28 border-b border-[var(--line)]">
         <div className="section-shell">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
@@ -1310,7 +1396,7 @@ export default function About() {
               threshold={0.15}
             >
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[var(--navy)] max-w-xl">
-                LSUDS & <span className="italic gradient-text">LASU.</span>
+                LSUDS and <span className="italic gradient-text">LASU.</span>
               </h2>
             </AnimatedContent>
             <AnimatedContent
@@ -1321,24 +1407,60 @@ export default function About() {
               threshold={0.15}
             >
               <p className="text-[var(--ink)]/60 max-w-sm">
-                LSUDS operates under the guidance and support of the
-                university's leadership.
+                LSUDS operates under the leadership of the University and the
+                guidance and support of its staff advisers at Lagos State
+                University.
               </p>
             </AnimatedContent>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-2xl">
-            {lasuLeadership.map((person) => (
+          {/* Vice Chancellor — standalone, featured above the advisers */}
+          <div className="mb-16">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--crimson)] mb-6">
+              Vice Chancellor
+            </p>
+            <div className="max-w-xs">
+              <div
+                key={viceChancellor.name}
+                className="adviser-card opacity-0 translate-y-6 flex flex-col items-center text-center gap-4"
+              >
+                <div className="relative w-full aspect-square overflow-hidden bg-[var(--navy)]/5 border-2 border-[var(--crimson)]/40">
+                  <Image
+                    src={viceChancellor.image}
+                    alt={`Photo of ${viceChancellor.name}`}
+                    fill
+                    sizes="(max-width: 640px) 90vw, 22vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div>
+                  <p className="text-base font-semibold text-[var(--navy)] leading-snug">
+                    {viceChancellor.name}
+                  </p>
+                  <p className="mt-0.5 text-xs uppercase tracking-wider text-[var(--crimson)]/80 font-medium">
+                    {viceChancellor.role}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Staff Advisers */}
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--crimson)] mb-6">
+            Staff Advisers
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {staffAdvisers.map((person) => (
               <div
                 key={person.name}
-                className="lasu-card opacity-0 translate-y-6 flex flex-col items-center text-center gap-4"
+                className="adviser-card opacity-0 translate-y-6 flex flex-col items-center text-center gap-4"
               >
                 <div className="relative w-full aspect-square overflow-hidden bg-[var(--navy)]/5 border border-[var(--line)]">
                   <Image
                     src={person.image}
                     alt={`Photo of ${person.name}`}
                     fill
-                    sizes="(max-width: 640px) 90vw, 40vw"
+                    sizes="(max-width: 640px) 90vw, 22vw"
                     className="object-cover object-top"
                   />
                 </div>

@@ -18,7 +18,7 @@ const editions = [
     date: "20th October, 2019",
     president: "Hezekiah Tiamiyu",
     description:
-      "The very first edition. A seed planted on stage at LASU that would grow into Africa's biggest storytelling platform. Speakers took the stage to share the origins of who they are — the seeds that shaped them.",
+      "The very first edition. A seed planted on stage at LASU that would grow into Nigeria's biggest storytelling platform. Speakers took the stage to share the origins of who they are — the seeds that shaped them.",
     image: "/images/listen/listen-logo.webp",
   },
   {
@@ -88,26 +88,31 @@ const editions = [
 ];
 
 const guests = [
-  { name: "Denrele Edun", image: "/listen/guests/denrele-edun.jpg" },
-  { name: "Shaffy Bello", image: "/listen/guests/shaffy-bello.jpg" },
+  { name: "Denrele Edun", image: "/images/listen/guests/denrele-edun.jpg" },
+  { name: "Shaffy Bello", image: "/images/listen/guests/shaffy-bello.jpg" },
   {
     name: "Roseline Afije",
-    image: "/listen/guests/roseline-afije.jpg",
+    image: "/images/listen/guests/roseline-afije.jpg",
     aka: "Liquorose",
   },
-  { name: "Adunni Ade", image: "/listen/guests/adunni-ade.jpg" },
-  { name: "Damola Olatunji", image: "/listen/guests/damola-olatunji.jpg" },
-  { name: "Seyi Edun Johnson", image: "/listen/guests/seyi-edun-johnson.jpg" },
+  { name: "Adunni Ade", image: "/images/listen/guests/adunni-ade.jpg" },
+  {
+    name: "Damola Olatunji",
+    image: "/images/listen/guests/damola-olatunji.jpg",
+  },
+  {
+    name: "Seyi Edun Johnson",
+    image: "/images/listen/guests/seyi-edun-johnson.jpg",
+  },
   {
     name: "Mariam Apaokhagi Greene",
-    image: "/listen/guests/mariam-apaokhagi-greene.jpg",
+    image: "/images/listen/guests/mariam-apaokhagi-greene.jpg",
   },
-  { name: "Dare Arigbede", image: "/listen/guests/dare-arigbede.jpg" },
-  { name: "Yemi Solade", image: "/listen/guests/yemi-solade.jpg" },
-  { name: "Iremide Adeoye", image: "/listen/guests/iremide-adeoye.jpg" },
+  { name: "Yemi Solade", image: "/images/listen/guests/yemi-solade.jpg" },
+  { name: "Iremide Adeoye", image: "/images/listen/guests/iremide-adeoye.jpg" },
   {
     name: "Prosperity Olorunfemi",
-    image: "/listen/guests/prosperity-olorunfemi.jpg",
+    image: "/images/listen/guests/prosperity-olorunfemi.jpg",
   },
 ];
 
@@ -433,7 +438,7 @@ export default function Listen() {
                   sub: "Since 2019 — growing every year",
                 },
                 {
-                  stat: "1,000s",
+                  stat: "7,000s",
                   label: "Lives impacted",
                   sub: "Attendees across all editions",
                 },

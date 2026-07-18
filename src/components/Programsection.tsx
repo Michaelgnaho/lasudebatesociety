@@ -1,13 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  BookOpenText,
-  Swords,
-  Crown,
-  Megaphone,
-} from "lucide-react";
+import { ArrowRight, BookOpenText, Swords, Crown, Compass } from "lucide-react";
 import AnimatedContent from "@/components/AnimatedContent";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -68,23 +62,23 @@ const programs = [
     image: "/images/listen/COG.jpg",
   },
   {
-    id: "call-out",
-    icon: Megaphone,
-    eyebrow: "Street Debate · Raw · Unscripted",
-    name: "Call-Out",
-    tag: "Open Challenge · Street Event",
+    id: "orators-retreat",
+    icon: Compass,
+    eyebrow: "The Annual Leadership Retreat",
+    name: "Orator's Retreat",
+    tag: "Annual · Retreat",
     description:
-      "Call-Out is where the streets become the stage. An orator issues a public challenge to another orator — and they face off in debate, storytelling, speech, or poetry right where they stand. There are no formal venues, no curated programmes. Just two voices, an audience, and the raw power of words under pressure. Anyone can call. Anyone can answer.",
+      "The Orator's Retreat is an annual, multi-day public speaking and networking event hosted by LSUDS. It is designed to help students master communication, storytelling, and delivery through intensive practical drills and expert-led sessions. Orator's Retreat 4.0, themed \"Odyssey,\" was successfully held from November 19th to 23rd, 2025.",
     highlights: [
-      "Open challenge format — any orator can issue a call",
-      "Formats include debate, storytelling, speech & poetry",
-      "Takes place in open, public campus spaces",
-      "Unscripted, spontaneous, and audience-driven",
+      "Annual, multi-day retreat format",
+      "Intensive practical drills and expert-led sessions",
+      "Builds communication, storytelling & delivery skills",
+      'Latest edition: 4.0 "Odyssey" — Nov 19–23, 2025',
     ],
-    cta: { label: "Learn more", href: "/programs/call-out" },
+    cta: { label: "Learn more", href: "/programs" },
     dark: false,
     accent: true,
-    image: "/images/listen/CALL-OUT.jpg",
+    image: "/images/retreat.jpg",
   },
 ];
 
@@ -127,8 +121,8 @@ export default function Programs() {
             threshold={0.1}
           >
             <p className="text-[var(--ink)]/55 max-w-sm">
-              From flagship events to street debates, every LSUDS programme is
-              built around one belief: that the right words, spoken well, can
+              From flagship events to an annual retreat, every LSUDS programme
+              is built around one belief: that the right words, spoken well, can
               change everything.
             </p>
           </AnimatedContent>
@@ -341,7 +335,7 @@ export default function Programs() {
           </div>
         </div>
 
-        {/* ── Bottom row: Change of Guard + Call-Out ───────────────────── */}
+        {/* ── Bottom row: Change of Guard + Orator's Retreat ───────────── */}
         <div className="grid grid-cols-1 gap-px lg:grid-cols-2 bg-[var(--line)]">
           {/* Change of Guard */}
           <div className="relative flex flex-col overflow-hidden bg-white border-t border-[var(--line)]">
@@ -438,7 +432,7 @@ export default function Programs() {
             </div>
           </div>
 
-          {/* Call-Out — crimson accent card */}
+          {/* Orator's Retreat — crimson accent card */}
           <div
             className="relative flex flex-col overflow-hidden border-t"
             style={{
@@ -465,13 +459,13 @@ export default function Programs() {
                 className="absolute -bottom-10 -right-4 text-[13rem] select-none font-serif leading-none"
                 style={{ color: "rgba(255,255,255,0.06)" }}
               >
-                !
+                &raquo;
               </span>
 
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex items-start justify-between">
                   <span className="flex h-12 w-12 items-center justify-center bg-white/15 text-white">
-                    <Megaphone className="h-5 w-5" />
+                    <Compass className="h-5 w-5" />
                   </span>
                   <span className="text-[10px] font-semibold uppercase tracking-widest text-white/40 border border-white/20 px-3 py-1.5">
                     {programs[3].tag}
