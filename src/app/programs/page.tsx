@@ -631,13 +631,6 @@ export default function ProgramsDetail() {
                   voices, an audience, and the raw power of words under
                   pressure.
                 </p>
-                <a
-                  href="/programs/call-out"
-                  className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white border-b-2 border-white/40 pb-1 w-fit group"
-                >
-                  Learn more about Call-Out
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </a>
               </div>
             </div>
 

@@ -3,10 +3,6 @@
 import { useState } from "react";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-// Each row is one person, one competition, one year. A person with more than
-// one win across different years or competitions gets more than one row.
-
 type Win = {
   name: string;
   competition: string;
@@ -50,6 +46,22 @@ const wins: Win[] = [
     name: "Mariam Oluwapelumi Busari",
     competition:
       "Best Diplomat and Critical Thinker, Presentation Award (Simulation)",
+    year: 2026,
+  },
+  {
+    name: "Adeleye Oladimeji Habeeb",
+    competition:
+      "Lagos Intellectual Competition (British Parliamentary Debate)",
+    year: 2026,
+  },
+  {
+    name: "Usman Barakah Oluwafunmilayo",
+    competition: "The LASUSU Ikeja Debate",
+    year: 2026,
+  },
+  {
+    name: "Gift Onyechukwu",
+    competition: "NASELS Departmental Debate",
     year: 2026,
   },
 
@@ -105,6 +117,11 @@ const wins: Win[] = [
     competition: "Accounting and Business Conduct Debate 6.0, Best Speaker",
     year: 2025,
   },
+  {
+    name: "Sherifat Umar",
+    competition: "Winner, Eko Got's Talent",
+    year: 2025,
+  },
 
   // 2024
   {
@@ -132,12 +149,95 @@ const wins: Win[] = [
     competition: "Winner, NAFIS LASU Debate Competition",
     year: 2024,
   },
+  {
+    name: "Ndukuba Edith Ugochi",
+    competition: "Inter-Faculty Freshers Debate Competition, LASU",
+    year: 2024,
+  },
+  {
+    name: "Sherifat Umar",
+    competition: "NANS JCC Debate Competition (with Saheed Sunday)",
+    year: 2024,
+  },
+  {
+    name: "Sherifat Umar",
+    competition: "Winner, Talent Hunt Poetry Prize",
+    year: 2024,
+  },
+  {
+    name: "Sherifat Umar",
+    competition: "LASU Debate Society Member of the Year",
+    year: 2024,
+  },
+  {
+    name: "Sherifat Umar",
+    competition: "1st Runner-Up, LASU Debate Society Poetry Slam",
+    year: 2024,
+  },
+  {
+    name: "Sherifat Umar",
+    competition: "1st Place, WESTCOSELS Poetry Competition",
+    year: 2024,
+  },
+  {
+    name: "Sherifat Umar",
+    competition: "2nd Runner-Up, NANS JCC Debate Competition",
+    year: 2024,
+  },
 
   // 2023
   {
     name: "Arowojobe Emmanuel",
     competition: "Winner, NASS LASU Freshers Debate",
     year: 2023,
+  },
+  {
+    name: "Sherifat Umar",
+    competition: "1st Place, Inter-Divisional Debate Competition, LASU",
+    year: 2023,
+  },
+  {
+    name: "Sherifat Umar",
+    competition:
+      "Best Graduating Student, ABC SPEAK Public Speaking Academy (Cohort 5.0)",
+    year: 2023,
+  },
+  {
+    name: "Sherifat Umar",
+    competition: "Public Speaker of the Year, NASELS LASU",
+    year: 2023,
+  },
+  {
+    name: "Sherifat Umar",
+    competition: "3rd Runner-Up, Speak Pro",
+    year: 2023,
+  },
+  {
+    name: "Sherifat Umar",
+    competition: "1st Runner-Up, Penactive Short Story Contest",
+    year: 2023,
+  },
+
+  // 2022
+  {
+    name: "Sherifat Umar",
+    competition: "1st Place, NASELS LASU Debate Competition",
+    year: 2022,
+  },
+  {
+    name: "Sherifat Umar",
+    competition: "1st Runner-Up, WORD LORD Competition (Word War 4)",
+    year: 2022,
+  },
+  {
+    name: "Sherifat Umar",
+    competition: "1st Runner-Up, My Rotaract Journey Story Challenge",
+    year: 2022,
+  },
+  {
+    name: "Sherifat Umar",
+    competition: "1st Place, Speak My Truth Poetry Contest",
+    year: 2022,
   },
 ];
 
