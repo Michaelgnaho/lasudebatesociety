@@ -156,23 +156,23 @@ const alumniHead = "Hezekiah Tiamiyu";
 
 const alumniYears: AlumniYear[] = [
   {
+    year: "2018/2019 Alumni",
+    members: [],
+  },
+  {
     year: "2019/2020 Alumni",
     members: [],
   },
   {
     year: "2020/2021 Alumni",
-    members: [],
-  },
-  {
-    year: "2021/2022 Alumni",
     members: ["Hezekiah Tiamiyu", "Joshua Ojo", "Abdulqadri Ismail Oluwagbemiga"],
   },
   {
-    year: "2022/2023 Alumni",
+    year: "2021/2022 Alumni",
     members: ["Afonja Omotolani Jahtoyosi"],
   },
   {
-    year: "2023/2024 Alumni",
+    year: "2022/2023 Alumni",
     members: [
       "Temitope Elizabeth Adeoye",
       "Alabi Deborah Adetutu",
@@ -183,7 +183,7 @@ const alumniYears: AlumniYear[] = [
     ],
   },
   {
-    year: "2024/2025 Alumni",
+    year: "2023/2024 Alumni",
     members: [
       "Daniel Kosisochukwu Iyiodo",
       "Fathia Adetola",
@@ -193,7 +193,7 @@ const alumniYears: AlumniYear[] = [
     ],
   },
   {
-    year: "2025/2026 Alumni",
+    year: "2024/2025 Alumni",
     members: [
       "Farouk Olaoluwa Aminu",
       "Balogun Oluwagbemiro Sophia",
@@ -221,7 +221,7 @@ const alumniYears: AlumniYear[] = [
     ],
   },
   {
-    year: "2026/2027 Alumni",
+    year: "2025/2026 Alumni",
     members: [
       "Samad Olaitan Sulaiman",
       "Favour Oluwatuyi",
