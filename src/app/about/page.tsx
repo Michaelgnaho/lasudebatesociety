@@ -165,7 +165,11 @@ const alumniYears: AlumniYear[] = [
   },
   {
     year: "2020/2021 Alumni",
-    members: ["Hezekiah Tiamiyu", "Joshua Ojo", "Abdulqadri Ismail Oluwagbemiga"],
+    members: [
+      "Hezekiah Tiamiyu",
+      "Joshua Ojo",
+      "Abdulqadri Ismail Oluwagbemiga",
+    ],
   },
   {
     year: "2021/2022 Alumni",
@@ -379,6 +383,11 @@ const administrations: Administration[] = [
         name: "Oladunni Akinsanmi",
         role: "Financial Secretary",
         image: "/images/Oladunni-Akinsanmi .webp",
+      },
+      {
+        name: "Bisola Agoi",
+        role: "Welfare Director",
+        image: "/images/Bisola-Folu-Agoi.jpg",
       },
       {
         name: "Hezekiah Tiamiyu",
